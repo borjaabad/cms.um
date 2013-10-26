@@ -7,18 +7,22 @@ class loginController extends Controller{
 	}
 	
 	public function index(){
+		$this->_view->agregaMensaje('Probando sistema de mensajes','success');
+		$this->_view->agregaMensaje('Probando sistema de mensajes','log');
+		$this->_view->agregaMensaje('Probando sistema de mensajes','error');
+		
 		$this->_view->renderizar('login');
 	}
 
 	public function validar(){
 		if($_POST){
-			if($_POST['usr_form']==USER  &&  $_POST['pass_form']==PASS){
+			if($_POST['user']==USER  &&  $_POST['pass']==PASS){
 					Session::set('autenticado',true);
-					Session::setMensaje('ok','Se ha logueado correctamente');
+					$this->_view->agregaMensaje('Se ha logueado correctamente','success');
 					header("Location:" . BASE_URL );
 			}
 			else{
-				Session::destroy();
+				//Session::destroy();
 			}
 		}
 		else 

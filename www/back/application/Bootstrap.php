@@ -4,9 +4,10 @@ class Bootstrap{
 	
 	public static function run(Request $peticion){
 		
-		
+	
 		$component = $peticion->getComponente();
 		$controller = $peticion->getControlador() . 'Controller';
+		
 		if($peticion->cargarComponente){
 			//echo "COMPONENTE EXTERNO CARGADO ";
 			$rutaControlador = ROOT .'components'.DS.$component.DS.'controllers'.DS.$controller.'.php';
@@ -20,20 +21,39 @@ class Bootstrap{
 		$metodo = $peticion->getMetodo();
 		$args = $peticion->getArgs();
 		
-		echo $rutaControlador;
-		exit;
 		
 		if(is_readable($rutaControlador)){
 			require_once $rutaControlador;
 			
 			$controller = new $controller;
 
-			if(is_callable(array($controller,$metodo)))
-				$metodo = $peticion->getMetodo();
-				
-			else
-				$metodo = 'index';
-
+			if(!$peticion->cargarComponente){
+				$metodo = $peticion->getControlador();
+				if(is_callable(array($component,$metodo)))
+					$metodo = $peticion->getMetodo();
+				else
+					$metodo = 'index';
+				if(isset($args))
+					call_user_func_array(array($controller,$metodo), $args);
+				else 
+					call_user_func(array($controller,$metodo));		
+			}
+			else{
+				if(is_callable(array($controller,$metodo)))
+					$metodo = $metodo;
+				else
+					$metodo = 'index';
+				if(isset($args))
+					call_user_func_array(array($controller,$metodo), $args);
+				else 
+					call_user_func(array($component,$metodo));	
+			}
+			
+			echo "componente: . ".$component."<br>";
+			echo "controlador: . ".$peticion->getControlador()."<br>";
+			echo "metodo: . ".$metodo."<br>"; 
+			
+						
 			if(isset($args))
 				call_user_func_array(array($controller,$metodo), $args);
 			else 

@@ -86,6 +86,7 @@ abstract class Controller
 			exit;
 		}
 	}
+
 }
 
 ?>

@@ -37,7 +37,7 @@ class  Request{
 	
 	public function esPalabraReservadaCORE($palabra){
 		
-		$palabras = array('login');
+		$palabras = array('login','mensajes');
 		foreach ($palabras as $word){
 			if($palabra==$word)
 				return true;

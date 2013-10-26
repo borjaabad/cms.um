@@ -14,7 +14,6 @@ require_once APP_PATH . 'View.php';
 require_once APP_PATH . 'Session.php';
 require_once APP_PATH . 'Datasource.php';
 
-
 Session::init();
 
 try{ 

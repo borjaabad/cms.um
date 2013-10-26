@@ -4,7 +4,6 @@ class indexController extends Controller{
 	
 	public function __construct(){
 		parent::__construct();
-echo "hhhh";
 		if(!Session::get('autenticado')){
 			Session::destroy();
 			$this->redireccionar('login');
@@ -12,9 +11,9 @@ echo "hhhh";
 	}
 	
 	public function index(){
-		$this->redireccionar('login');
-	//	$this->_view->titulo = "Portada";
-	//	header("Location:".BASE_URL."producto/doopress/");
+		//$this->redireccionar('login');
+		$this->_view->titulo = "Portada";
+		$this->_view->renderizar('main',true);
 	}
 	
 	public function editmaker(){

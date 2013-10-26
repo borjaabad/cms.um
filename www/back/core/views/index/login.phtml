@@ -6,9 +6,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	<link rel=StyleSheet href="<?php echo BASE_URL.'public/css/core.css'; ?>" type="text/css">
+	<script type="text/javascript" src="<?php echo BASE_URL;?>/public/js/alertify.min.js"></script>
   </head>
   <body>
-    <?php echo $this->view->_mensajes;?>
     <div class="login_container">
       <div class="login">
 		<form method="post" action="<?php echo BASE_URL.'login/'; ?>" >
@@ -19,5 +19,6 @@
       </form>
 	  </div>
     </div>
+    <?php $this->view->mostrarMensajes();?>
   </body>
 </html>
