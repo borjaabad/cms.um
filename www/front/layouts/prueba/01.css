@@ -1,0 +1,71 @@
+p  {
+	font:	10pt arial ;
+}
+
+#contenedor_global{
+	width:		900px ;
+	margin:		0px auto;
+	
+	border:		2px solid red ;
+}
+
+#cabecera{
+	height:		150px ;
+	width:		100% ;
+	margin:		10px 0px ;
+	
+	border:		1px solid red ;
+}
+
+#menu{
+	height:		50px ;
+	width:		100% ;
+	margin:		10px 10px 10px 0px ;
+	
+	border:		1px solid green ;
+}
+
+#zona_1{
+	height:		200px ;
+	width:		32% ;
+	float:		left ;
+	margin:		10px 0px 10px 10px ;
+	
+	border:		1px solid orange ;
+}
+
+#zona_2{
+	height:		200px ;
+	width:		32% ;
+	float:		left ;
+	margin:		10px 0px 10px 10px ;
+	
+	border:		1px solid green ;
+}
+
+#zona_3{
+	height:		200px ;
+	width:		65% ;
+	float:		left ;
+	margin:		10px 0px 10px 10px ;
+	
+	border:		1px solid pink ;
+}
+
+#zona_banners{
+	height:		350px ;
+	width:		32% ;
+	float:		right ;
+	margin:		10px 0px 10px 10px ;
+	
+	border:		1px solid black ;
+}
+
+#pie{
+	height:		50px ;
+	width:		100% ;
+	clear:		both ;
+	margin:		10px 0px;
+	
+	border:		1px solid purple ;
+}

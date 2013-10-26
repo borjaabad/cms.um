@@ -1,0 +1,9 @@
+<site>
+	<url>editmakerlowcost.com</url>
+	<bbdd>editmakerlowcost_com</bbdd>
+	<cache>true</cache>
+	<cachear_noticias>500</cachear_noticias>
+	<cachear_secciones>50</cachear_secciones>
+	<cachear_publicidad>0</cachear_publicidad>
+	<cachear_portada>1</cachear_portada>
+</site>

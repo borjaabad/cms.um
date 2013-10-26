@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login CMS.UM</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel=StyleSheet href="<?php echo BASE_URL.'public/css/core.css'; ?>" type="text/css">
+  </head>
+  <body>
+    <?php echo $this->view->_mensajes;?>
+    <div class="login_container">
+      <div class="login">
+		<form method="post" action="<?php echo BASE_URL.'login/'; ?>" >
+        <h2>Login</h2>
+        <input type="text" name="user" placeholder="User">
+        <input type="password" name="pass" placeholder="Password">
+        <button type="submit">Sign in</button>
+      </form>
+	  </div>
+    </div>
+  </body>
+</html>
