@@ -5,6 +5,7 @@ define('ROOT', realpath(dirname(__FILE__)) . DS);
 define('APP_PATH', ROOT . 'application' . DS);
 
 
+//Aplicación siempre cargada
 require_once APP_PATH . 'Config.php';
 require_once APP_PATH . 'Request.php';
 require_once APP_PATH . 'Bootstrap.php';
@@ -16,9 +17,13 @@ require_once APP_PATH . 'Datasource.php';
 require_once APP_PATH . 'Media.php';
 require_once APP_PATH . 'Alertify.php';
 
+//Modelos del sistema
+require_once ROOT.'models'.DS.'menuModel.php';
+
 Session::init();
 
 try{ 
+	
 	Bootstrap::run(new Request());
 }
 catch (Exception $e){

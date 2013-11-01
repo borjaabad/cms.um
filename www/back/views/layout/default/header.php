@@ -1,3 +1,6 @@
+<?php
+header('Content-Type: text/html; charset=utf8');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,3 +12,8 @@
 	<?php  Media::css();  ?>
   </head>
 	<body>
+		<div id="container">
+		<?php include 'menu.php';?>
+		<?php include 'top_bar.php';?>
+		<div id="componente">
+			

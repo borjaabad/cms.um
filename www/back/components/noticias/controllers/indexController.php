@@ -9,7 +9,7 @@ class indexController extends Controller{
 	
 	//login/
 	public function index(){
-		$this->_view->renderizar('login');
+		$this->_view->renderizar('login',true);
 	}
 	
 	/*
@@ -34,17 +34,14 @@ class indexController extends Controller{
 					Alertify::agregaMensaje('Contraseña no puede ser vacio','error');
 				else
 					Alertify::agregaMensaje('La combinación de usuario y contraseña no es correcta','error');
-				$this->_view->renderizar('login');
+				$this->_view->renderizar('login',true);
 				
 			}
 		}
 		else 
-			$this->_view->renderizar('login');
+			$this->_view->renderizar('login',true);
 	}
-	public function cerrarSesion(){	
-			Session::destroy();
-			header("Location:" . BASE_URL );
-	}
+	
 
 	
 }

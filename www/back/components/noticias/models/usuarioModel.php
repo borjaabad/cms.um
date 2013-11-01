@@ -9,6 +9,8 @@ class usuarioModel extends Model{
 
 	public function __construct(){
 		parent::__construct();
+		$this->nombre = $_POST['user'];
+		$this->contrasena = $_POST['pass'];
 	}
 
 
@@ -17,7 +19,6 @@ class usuarioModel extends Model{
 		Session::set('autenticado',true);
 		Session::set('usuario', $this);
 	}
-
 	
 	public function validar(){
 		if($_POST['user']==USER  &&  $_POST['pass']==PASS){
