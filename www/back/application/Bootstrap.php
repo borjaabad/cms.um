@@ -6,28 +6,23 @@ class Bootstrap{
 		
 	
 		$component = $peticion->getComponente();
-		$controller = $peticion->getControlador() . 'Controller';
-		
-		if($peticion->cargarComponente){
-			//echo "COMPONENTE EXTERNO CARGADO ";
-			$rutaControlador = ROOT .'components'.DS.$component.DS.'controllers'.DS.$controller.'.php';
-		}
-		else{
-			//echo "COMPONENTE CORE CONTROLADOR CARGADO ";
-			$rutaControlador = ROOT .'core'.DS.'controllers'.DS.$component.'Controller.php';
-			$controller = $component.'Controller';
-		}
-				
+		$controller = $peticion->getControlador() . 'Controller';			
 		$metodo = $peticion->getMetodo();
 		$args = $peticion->getArgs();
 		
+		$rutaControlador = ROOT .'components'.DS.$component.DS.'controllers'.DS.$controller.'.php';
+
+		/*
+		echo "componente: . ".$component."<br>";
+		echo "controlador: . ".$peticion->getControlador()."<br>";
+		echo "metodo: . ".$metodo."<br>"; 
+		*/
 		
 		if(is_readable($rutaControlador)){
 			require_once $rutaControlador;
 			
 			$controller = new $controller;
-
-			if(!$peticion->cargarComponente){
+			
 				$metodo = $peticion->getControlador();
 				if(is_callable(array($component,$metodo)))
 					$metodo = $peticion->getMetodo();
@@ -37,30 +32,41 @@ class Bootstrap{
 					call_user_func_array(array($controller,$metodo), $args);
 				else 
 					call_user_func(array($controller,$metodo));		
-			}
-			else{
-				if(is_callable(array($controller,$metodo)))
-					$metodo = $metodo;
-				else
-					$metodo = 'index';
-				if(isset($args))
-					call_user_func_array(array($controller,$metodo), $args);
-				else 
-					call_user_func(array($component,$metodo));	
-			}
-			
-			echo "componente: . ".$component."<br>";
-			echo "controlador: . ".$peticion->getControlador()."<br>";
-			echo "metodo: . ".$metodo."<br>"; 
-			
 						
 			if(isset($args))
 				call_user_func_array(array($controller,$metodo), $args);
 			else 
-				call_user_func(array($controller,$metodo));			
+				call_user_func(array($controller,$metodo));
 		}
-		else {
-			throw new Exception('rutaControlador no encontrada');
+		
+		else{ //Significa que no existe el controlador buscado. Entonces veo si existe el método en lugar del controller del indexController
+			  //Así si llamo a /login/validar y no existe el controlador validar buscará el método validar en el indexController del componente login
+			  ///login/validar/arg1/arg2/arg3
+			  
+			$component = $peticion->getComponente();
+			$controller = 'indexController';
+			
+			$rutaControlador = ROOT .'components'.DS.$component.DS.'controllers'.DS.$controller.'.php';
+
+			$metodo = $peticion->getControlador();
+			
+			
+			if($peticion->getMetodo()){
+				array_push($args, $peticion->getMetodo());
+			}
+			array_push($args, $peticion->getArgs());
+			
+			require_once $rutaControlador;
+			
+			$controller = new $controller;
+			
+				$metodo = $peticion->getControlador();
+				if(is_callable(array($controller,$metodo))){
+					if(isset($args))
+						call_user_func_array(array($controller,$metodo), $args);
+					else 
+						call_user_func(array($controller,$metodo));
+				}						
 		}
 	}
 	

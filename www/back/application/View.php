@@ -4,24 +4,17 @@ class View{
 
 	private $_controlador;
 	private $_componente;
-	private $cargarComponente;
 
 
 	public function __construct(Request $peticion){
 		$this->_controlador = $peticion->getControlador();
 		$this->_componente = $peticion->getComponente();
-		$this->cargarComponente = $peticion->cargarComponente;
-		if($peticion->cargarComponente)
-		$this->ruta = 'components'.DS.$this->_componente.DS;
-		else
-		$this->ruta = 'core'.DS;
+		
+
 	}
 
 	public function renderizar($vista,$item = false){
-		if($this->cargarComponente)
-		$rutaView = ROOT. $this->ruta .'views' . DS . $this->_controlador . DS . $vista . '.phtml';
-		else
-		$rutaView = ROOT. $this->ruta .'views' . DS . $this->_componente . DS . $vista . '.phtml';
+		$rutaView = ROOT. 'components'. DS .$this->_componente. DS .'views' . DS . $this->_controlador . DS . $vista . '.phtml';
 			
 		//echo $rutaView; exit;
 			
@@ -66,6 +59,14 @@ class View{
 		</script>";
 		}
 		Session::destroy('mensajes');
+	}
+	
+	public function js(){
+		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'js.phtml';	
+	}
+	
+	public function css(){
+		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'css.phtml';
 	}
 }
 

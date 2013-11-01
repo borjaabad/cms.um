@@ -11,7 +11,6 @@ class indexController extends Controller{
 	}
 	
 	public function index(){
-		//$this->redireccionar('login');
 		$this->_view->titulo = "Portada";
 		$this->_view->renderizar('main',true);
 	}
