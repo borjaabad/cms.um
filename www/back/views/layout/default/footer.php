@@ -1,3 +1,3 @@
-    <?php $this->mostrarMensajes();?>
+    <?php Alertify::mostrarMensajes();?>
   </body>
 </html>

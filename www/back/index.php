@@ -13,6 +13,8 @@ require_once APP_PATH . 'Model.php';
 require_once APP_PATH . 'View.php';
 require_once APP_PATH . 'Session.php';
 require_once APP_PATH . 'Datasource.php';
+require_once APP_PATH . 'Media.php';
+require_once APP_PATH . 'Alertify.php';
 
 Session::init();
 

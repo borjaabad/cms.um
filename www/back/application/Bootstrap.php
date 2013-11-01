@@ -4,8 +4,10 @@ class Bootstrap{
 	
 	public static function run(Request $peticion){
 		
-	
 		$component = $peticion->getComponente();
+		
+		define('ROOT_COM', ROOT .'components'.DS.$component.DS);
+		
 		$controller = $peticion->getControlador() . 'Controller';			
 		$metodo = $peticion->getMetodo();
 		$args = $peticion->getArgs();
@@ -23,8 +25,8 @@ class Bootstrap{
 			
 			$controller = new $controller;
 			
-				$metodo = $peticion->getControlador();
-				if(is_callable(array($component,$metodo)))
+				//$metodo = $peticion->getControlador();
+				if(is_callable(array($controller,$metodo))) //ojo: if(is_callable(array($component,$metodo)))
 					$metodo = $peticion->getMetodo();
 				else
 					$metodo = 'index';
@@ -43,14 +45,13 @@ class Bootstrap{
 			  //Así si llamo a /login/validar y no existe el controlador validar buscará el método validar en el indexController del componente login
 			  ///login/validar/arg1/arg2/arg3
 			  
-			$component = $peticion->getComponente();
 			$controller = 'indexController';
 			
 			$rutaControlador = ROOT .'components'.DS.$component.DS.'controllers'.DS.$controller.'.php';
 
-			$metodo = $peticion->getControlador();
+			$metodo = $peticion->getControlador();	
 			
-			
+			//Al desplazarse a la izq los parámetros el método pasaría a ser el primer argumento
 			if($peticion->getMetodo()){
 				array_push($args, $peticion->getMetodo());
 			}

@@ -14,10 +14,13 @@ class View{
 	}
 
 	public function renderizar($vista,$item = false){
+		
 		$rutaView = ROOT. 'components'. DS .$this->_componente. DS .'views' . DS . $this->_controlador . DS . $vista . '.phtml';
 			
-		//echo $rutaView; exit;
-			
+		//Si no existe un controlador con ese nombre busca la vista en index
+		if(!is_readable($rutaView)){
+			$rutaView = ROOT. 'components'. DS .$this->_componente. DS .'views' . DS . 'index' . DS . $vista . '.phtml';
+		}
 		if(is_readable($rutaView)){
 			if($item){
 				include_once ROOT.'views'.DS.'layout'.DS.DEFAULT_LAYOUT.DS.'header.php';
@@ -25,49 +28,17 @@ class View{
 				include_once ROOT.'views'.DS.'layout'.DS.DEFAULT_LAYOUT.DS. 'footer.php';
 			}
 			else
-			include_once $rutaView;
+				include_once $rutaView;
 		}
-		else
-		throw new Exception('Error al cargar la vista');
-	}
-
-	public function agregaMensaje($mensaje,$tipo){
-
-		switch ($tipo){
-			case 'success': break;
-			case 'error': break;
-			case 'log': break;
-			default: $tipo='log';break;
+		else{
+			throw new Exception('Error al cargar la vista');
 		}
+
 			
-		$alertify = "
-					alertify.set({ delay: 5000 });
-					alertify.".$tipo."('".$mensaje."');
-					";
-
-		if(isset($_SESSION['mensajes']))
-		$_SESSION['mensajes'] = $_SESSION['mensajes'] . $alertify;
-		else
-		$_SESSION['mensajes'] = $alertify;
+		
 	}
 
-	public function mostrarMensajes(){
-		if(isset($_SESSION['mensajes'])){
-			echo "<script type='text/javascript'>
-			".$_SESSION['mensajes']."
-			
-		</script>";
-		}
-		Session::destroy('mensajes');
-	}
-	
-	public function js(){
-		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'js.phtml';	
-	}
-	
-	public function css(){
-		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'css.phtml';
-	}
+
 }
 
 
