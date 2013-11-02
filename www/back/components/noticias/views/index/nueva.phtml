@@ -1,0 +1,53 @@
+<?php include ROOT_COM.'views'.DS.'common'.DS.'menu_main.phtml';?>
+<form method="post" action="<?php echo BASE_URL.'noticias/nueva'; ?>">
+<table>
+	<tr>
+		<td>
+			<?php 
+			if(isset($this->_firmantes)){
+				echo '<select>';
+				echo '<option value="false">Firmante</option>';
+				echo '<option value="0"> -- sin firma -- </option>';
+				foreach ($this->_firmantes as $firmante){
+					echo '<option value='.$firmante['id'].'>'.$firmante['nombre'].'</option>';
+				}	
+							
+				echo '</select>';
+			}
+			?>
+		</td>
+		<td>
+		<?php 
+			if(isset($this->_secciones)){
+				echo '<select>';
+				echo '<option value="false">Sección</option>';
+				foreach ($this->_secciones as $seccion){
+					echo '<option value='.$seccion['id'].'>'.$seccion['seccion'].'</option>';
+				}		
+				echo '</select>';
+			}
+			?>
+		</td>
+		<td>Orden	
+			<input type="text" name="orden"  size="5"  maxlength="9"/>
+		</td>
+		<td></td>
+		<td>
+			<?php Form::button('Guardar noticia','positive','add'); ?>
+			<?php Form::button('Ampliar noticia','regular','blue'); ?>
+			<?php Form::button('Eliminar noticia','negative','delete'); ?>
+ 
+		</td>
+	</tr>
+</table>
+
+
+<h2>Título</h2>	
+	<textarea rows="1"  name="texto"></textarea>
+<h2>Subtítulo</h2>
+	<textarea rows="1"  name="entradilla"></textarea>	
+<h2>Entradilla</h2>
+	<textarea rows="4"  name="entradilla"></textarea>
+<h2>Texto</h2>	
+	<textarea rows="15"  name="texto"></textarea>
+</form>

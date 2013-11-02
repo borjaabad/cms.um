@@ -5,41 +5,23 @@ class indexController extends Controller{
 	
 	public function __construct(){
 		parent::__construct();
+		Session::control();
 	}
 	
-	//login/
+	//noticias/
 	public function index(){
-		$this->_view->renderizar('login',true);
+		$this->_view->renderizar('listado',true);
 	}
 	
-	/*
-	 * Sino existe el validarController.php en el componente busca el método en el indexController
-	 * login/index/validar -> login/validar
-	 */
-	//login/validar
-	public function validar(){	
-				
-		if($_POST){
-			
-			$usuario = $this->loadModel('usuario');
-			
-			if($usuario->validar()){
-					$usuario->iniciarSession();
-					header("Location:" . BASE_URL );
-			}
-			else{
-				if($_POST['user']=="")
-					Alertify::agregaMensaje('Usuario no puede ser vacio','error');
-				elseif($_POST['pass']=="")
-					Alertify::agregaMensaje('Contraseña no puede ser vacio','error');
-				else
-					Alertify::agregaMensaje('La combinación de usuario y contraseña no es correcta','error');
-				$this->_view->renderizar('login',true);
-				
-			}
-		}
-		else 
-			$this->_view->renderizar('login',true);
+
+	//noticias/nueva
+	public function nueva(){	
+		$firmante = $this->loadModel('firmante');
+		$seccion = $this->loadModelFromOtherComponent('seccion','secciones');
+		
+		$this->_view->_secciones = $seccion->getSecciones();
+		$this->_view->_firmantes = $firmante->getFirmantes();
+		$this->_view->renderizar('nueva',true);
 	}
 	
 

@@ -4,10 +4,8 @@ class Bootstrap{
 	
 	public static function run(Request $peticion){
 		
-		$component = $peticion->getComponente();
-		
-		define('ROOT_COM', ROOT .'components'.DS.$component.DS);
-		
+		$component = $peticion->getComponente();	
+				
 		$controller = $peticion->getControlador() . 'Controller';			
 		$metodo = $peticion->getMetodo();
 		$args = $peticion->getArgs();

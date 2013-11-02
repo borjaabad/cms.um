@@ -6,7 +6,7 @@ class Alertify{
 		
 	}
 	
-	public function agregaMensaje($mensaje,$tipo){
+	public function add($mensaje,$tipo){
 
 		switch ($tipo){
 			case 'success': break;
@@ -17,7 +17,7 @@ class Alertify{
 			
 		$alertify = "
 					alertify.set({ delay: 5000 });
-					alertify.".$tipo."('".utf8_encode($mensaje)."');
+					alertify.".$tipo."('".$mensaje."');
 					";
 
 		if(isset($_SESSION['mensajes']))

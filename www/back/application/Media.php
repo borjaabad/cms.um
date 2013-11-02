@@ -29,7 +29,6 @@ class Media{
 		if($default){			
 			if(is_readable(ROOT.DS.'components'.$this->_componente.DS.'public'.DS.'css'.DS.$archivo))
 				echo '<link rel="StyleSheet" href="' . BASE_URL . 'components/' .$this->_componente.'/public/css/'.$archivo.'" type="text/css">';
-				Alertify::agregaMensaje($archivo . ' Agregado ok' , 'log');
 		}
 		else{
 			throw new Exception("Error en la carga del CSS");
@@ -43,7 +42,6 @@ class Media{
 		if($default){			
 			if(is_readable(ROOT.DS.'components'.$this->_componente.DS.'public'.DS.'js'.DS.$archivo))
 				echo '<script type="text/javascript" src="' . BASE_URL . 'components/' .$this->_componente.'/public/js/'.$archivo.'"></script>';
-				Alertify::agregaMensaje($archivo . ' Agregado ok' , 'log');
 		}
 		else{
 			throw new Exception("Error en la carga del CSS");

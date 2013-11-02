@@ -11,12 +11,11 @@ abstract class Controller
 
 	//Carga un modelo por defecto del componente propio
 	protected function loadModel($modelo,$flag=false)
-	{
-		
+	{	
 			$modelo = $modelo . 'Model';
 						
 			if(!$flag)
-				$rutaModelo = ROOT_COM . 'models' . DS . $modelo . '.php'; //MODELOS DEL COMPONENTE QUE SE EST� EJECUTANDO
+				$rutaModelo = ROOT_COM . 'models' . DS . $modelo . '.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
 			else 
 				$rutaModelo = ROOT . 'models' . DS . $modelo . '.php';  //MODELOS BASE Y COMUNES A TODA LA APP
 			
@@ -27,6 +26,25 @@ abstract class Controller
 				$modelo = new $modelo;
 		
 				return $modelo;
+			}
+			else {
+				throw new Exception('Error de modelo');
+			}
+	}
+	
+	protected function loadModelFromOtherComponent($model,$component){
+		
+		$model = $model . 'Model';
+		
+		$rutaModelo = ROOT . 'components' . DS . $component . DS . 'models' . DS .$model. '.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
+		
+		if(is_readable($rutaModelo)){
+			
+				require_once $rutaModelo;
+	
+				$model = new $model;
+		
+				return $model;
 			}
 			else {
 				throw new Exception('Error de modelo');

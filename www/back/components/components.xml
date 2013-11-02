@@ -3,25 +3,31 @@
 		<component>
 			<name>default</name>
 			<menu>false</menu>
+			<enabled>true</enabled>
 		</component>
 		<component>
 			<name>login</name>
 			<menu>false</menu>
+			<enabled>true</enabled>
 		</component>
 		<component>
 			<name>noticias</name>
 			<displayName>Noticias</displayName>
 			<menu>true</menu>
+			<sqlprefix>not_</sqlprefix>
+			<enabled>true</enabled>
 		</component>		
 		<component>
 			<name>secciones</name>
 			<displayName>Secciones</displayName>
 			<menu>true</menu>
+			<enabled>true</enabled>
 		</component>		
 		<component>
 			<name>configuracion</name>
 			<displayName>Configuración</displayName>
 			<menu>true</menu>
+			<enabled>true</enabled>
 		</component>		
 	</components>
 </xml>

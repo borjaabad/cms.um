@@ -38,6 +38,15 @@ class Session
 		if(isset($_SESSION[$clave]))
 			return $_SESSION[$clave];
 	}
+	
+	public static function control()
+	{
+		if(Session::get('autenticado'))
+			return true;
+		
+		session_destroy();
+		header('Location: ' .BASE_URL);
+	}
 
 }
 

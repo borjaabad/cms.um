@@ -4,10 +4,13 @@
 
 class Model
 {
-    //protected $_db;
+    protected $_db;
     
     public function __construct() {
-       //$this->_db = new Database();
+    }
+    
+    public function cargaBD(){
+    	$this->_db = new Database();
     }
     
 	protected function getLibrary($libreria)

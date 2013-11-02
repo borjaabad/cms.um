@@ -13,7 +13,6 @@ class usuarioModel extends Model{
 
 
 	public function iniciarSession() {
-		Alertify::agregaMensaje('Se ha logueado correctamente','success');
 		Session::set('autenticado',true);
 		Session::set('usuario', $this);
 	}

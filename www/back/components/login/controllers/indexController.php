@@ -13,7 +13,7 @@ class indexController extends Controller{
 	}
 	
 	/*
-	 * Sino existe el validarController.php en el componente busca el método en el indexController
+	 * Sino existe el validarController.php en el componente busca el mï¿½todo en el indexController
 	 * login/index/validar -> login/validar
 	 */
 	//login/validar
@@ -25,15 +25,16 @@ class indexController extends Controller{
 			
 			if($usuario->validar()){
 					$usuario->iniciarSession();
+					Alertify::add('Se ha logueado correctamente','success');
 					header("Location:" . BASE_URL );
 			}
 			else{
 				if($_POST['user']=="")
 					Alertify::agregaMensaje('Usuario no puede ser vacio','error');
 				elseif($_POST['pass']=="")
-					Alertify::agregaMensaje('Contraseña no puede ser vacio','error');
+					Alertify::agregaMensaje('ContraseÃ³a no puede ser vacio','error');
 				else
-					Alertify::agregaMensaje('La combinación de usuario y contraseña no es correcta','error');
+					Alertify::agregaMensaje('La combinaciÃ³n de usuario y contraseÃ±a no es correcta','error');
 				$this->_view->renderizar('login');
 				
 			}

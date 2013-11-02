@@ -1,29 +1,30 @@
 <?php
 
-class Menu extends Model{
+class Menu{
 	
-	public $componentes;
 	
 	public function __construct(){
-		parent::__construct();
-		
+		//parent::__construct();
 	}
 
 	public function mostrar(){
-		
+	
 		$menu = new Menu();
-		$menu->componentes = simplexml_load_file(ROOT.'components'.DS.'components.xml');
-		
 		$menuHtml  = '<div id="menu">';
-		$menuHtml .= $menu->getItemsMenu($menu->componentes->components);
+		$menuHtml .= $menu->getItemsMenu();
 		$menuHtml .= '</div>';	
 		
 		echo $menuHtml;
 	}
-	public function getItemsMenu($componentes){
+	
+	
+	
+	private function getItemsMenu(){
+		
+		GLOBAL $components;
 		$items = '';
-		foreach ($componentes->component as $componente){
-			if($componente->menu == 'true')			
+		foreach ($components->component as $componente){
+			if($componente->menu == 'true' && $componente->enabled == 'true')			
 				$items .= '<a href="'.BASE_URL.$componente->name.'">
 							<div id="menuItem">'.
 								$componente->displayName.'
