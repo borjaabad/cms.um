@@ -15,7 +15,18 @@ class Form{
         echo $texto.'</div>';
     	echo '</button>';
 		
-	}	
+	}
+
+	public function select($array,$value,$select,$first='Seleccione uno'){
+		if(isset($array)){
+			echo '<select name="'.$select.'">';
+			echo '<option value="false">'.$first.'</option>';
+			foreach ($array as $arr){
+				echo '<option value='.$arr[$value].'>'.$arr[$select].'</option>';
+			}		
+			echo '</select>';
+		}
+	}
 }
 
 

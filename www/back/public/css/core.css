@@ -5,11 +5,12 @@ html,body{
 	height:100%;
 	font-family: Helvetica,Arial,sans-serif;
 	font-size:14px;
-	color:#CCC;
+	color:#C11;
 }
 
 form {
 	background: #FAFAFA;
+	
 }
 textarea{
 	width: 98%;
@@ -22,12 +23,14 @@ table tr td {
 	padding: 5px;
 	margin:5;
 	border: 1px solid #CCC;	
+	background: #FFF;
 }
 
 table tr th {
 	padding: 5px;
 	margin: 5px;
 	border: 1px solid red;
+	background: #FFF;
 }
 
 h2 {
@@ -124,7 +127,9 @@ a #menuItem:HOVER{
 	
 }
 
-
+#separador{
+	height:35px;
+}
 
 .wrap{
 	width: 100%;

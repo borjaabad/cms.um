@@ -14,6 +14,18 @@
 			<name>noticias</name>
 			<displayName>Noticias</displayName>
 			<menu>true</menu>
+			<menus>
+				<menuItem>
+					<name>main</name>
+					<path>noticias/views/common/menu_main.phtml</path>
+					<default>true</default>
+				</menuItem>
+				<menuItem>
+					<name>firmantes</name>
+					<path>noticias/views/common/menu_firmantes.phtml</path>
+					<default>false</default>
+				</menuItem>
+			</menus>
 			<sqlprefix>not_</sqlprefix>
 			<enabled>true</enabled>
 		</component>		

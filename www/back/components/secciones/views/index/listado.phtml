@@ -1,9 +1,11 @@
 
 <form method="post" action="<?php echo BASE_URL.'secciones/agregar'; ?>">
-	<?php Form::button('Agregar','positive','add'); ?>
-	<?php Form::button('Eliminar noticias seleccionadas','negative','delete'); ?>
 <h2>Agregar una nueva sección:</h2>
 	<textarea rows="1"  name="seccion" style="width:50%;"></textarea>	
+	<p></p>
+	<?php Form::button('Agregar','positive','add'); ?>
+	<?php Form::button('Eliminar noticias seleccionadas','negative','delete'); ?>
+	<p></p>
 </form>
 <form method="post" action="<?php echo BASE_URL.'secciones/eliminar'; ?>">
 

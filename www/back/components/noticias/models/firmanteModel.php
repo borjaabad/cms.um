@@ -24,6 +24,35 @@ class firmanteModel extends Model{
 		}
 
 	}
+	
+	public function addFirmante($firmante,$email){
+
+		try {
+			$conn = $this->_db->prepare("INSERT INTO firmantes VALUES (NULL, ? , ?)") or die(mysql_error().mysql_errno());
+			$res = $conn->execute(array($firmante,$email));
+			return $res;
+		}
+		catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
+	
+	public function eliminar($firmantes){
+	
+		try {
+			$conn = $this->_db->prepare("DELETE FROM firmantes WHERE id = ?");
+			foreach ($firmantes as $id){
+				if($conn->execute(array($id)))
+					Alertify::add('Eliminado firmante '.$id,'log');
+			}
+			return true;
+		}
+		catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+	}
 }
 
 ?>

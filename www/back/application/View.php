@@ -32,13 +32,15 @@ class View{
 		}
 		else{
 			throw new Exception('Error al cargar la vista');
-		}
-
-			
-		
+		}		
 	}
-
-
+	
+	public static function setMenu($menu){
+		if(defined('MENUCOM')){
+			if($menu)
+				define('MENUCOM',$menu);
+		}
+	}
 }
 
 

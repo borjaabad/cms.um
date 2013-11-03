@@ -1,1 +1,27 @@
-<?php include ROOT_COM.'views'.DS.'common'.DS.'menu_main.phtml';?>
+<form name="noticiasForm" method="post" action="<?php echo BASE_URL_COM.'eliminar'; ?>">
+<table>
+	<tr>
+	    <th></th>
+		<th>ID</th>
+		<th>Titulo</th>
+		<th>Orden</th>
+		<th>Sección</th>
+		<th>Firmante</th>
+	</tr>
+		<?php if($this->_noticias){
+			foreach ($this->_noticias as $noticia){
+				echo '<tr>';
+				echo '<td style="width:15px;"><input name="noticias[]" type="checkbox" id="checkbox[]" value="'.$noticia['id'].'"></td>';
+				echo '<td style="width:25px;">'.$noticia['id'].'</td>';
+				echo '<td>'.$noticia['titulo'].'</td>';
+				echo '<td>'.$noticia['orden'].'</td>';
+				echo '<td>'.$noticia['id_seccion'].'</td>';
+				echo '<td>'.$noticia['id_firmante'].'</td>';
+				echo '</tr>';
+			}
+		}?>
+		
+</table>
+	<?php Form::button('Eliminar noticias seleccionadas','negative','delete'); ?>
+</form>
+</form>

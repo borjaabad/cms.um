@@ -1,0 +1,34 @@
+
+<form name="firmanteForm" method="post" action="<?php echo BASE_URL_COM.'firmantes/agregar'; ?>">
+<h2>Agregar un firmante:</h2>
+	<textarea rows="1"  name="firmante" style="width:20%;"></textarea>	
+<h2>Email:</h2>
+	<textarea rows="1"  name="email" style="width:20%;"></textarea>	
+	<p></p>
+	<?php Form::button('Agregar','positive','add'); ?>
+	<p></p>
+</form>
+<form name="firmantesForm" method="post" action="<?php echo BASE_URL_COM.'firmantes/eliminar'; ?>">
+
+
+<table>
+	<tr>
+	    <th></th>
+		<th>ID</th>
+		<th>Nombre</th>
+		<th>Email</th>
+	</tr>
+		<?php if($this->_firmantes){
+			foreach ($this->_firmantes as $firmante){
+				echo '<tr>';
+				echo '<td style="width:15px;"><input name="firmantes[]" type="checkbox" id="checkbox[]" value="'.$firmante['id'].'"></td>';
+				echo '<td style="width:25px;">'.$firmante['id'].'</td>';
+				echo '<td>'.$firmante['nombre'].'</td>';
+				echo '<td>'.$firmante['email'].'</td>';
+				echo '</tr>';
+			}
+		}?>
+		
+</table>
+	<?php Form::button('Eliminar firmantes seleccionados','negative','delete'); ?>
+</form>

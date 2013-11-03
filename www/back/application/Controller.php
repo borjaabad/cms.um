@@ -13,14 +13,14 @@ abstract class Controller
 	protected function loadModel($modelo,$flag=false)
 	{	
 			$modelo = $modelo . 'Model';
-						
+				
 			if(!$flag)
 				$rutaModelo = ROOT_COM . 'models' . DS . $modelo . '.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
 			else 
 				$rutaModelo = ROOT . 'models' . DS . $modelo . '.php';  //MODELOS BASE Y COMUNES A TODA LA APP
-			
+		
 			if(is_readable($rutaModelo)){
-			
+				
 				require_once $rutaModelo;
 	
 				$modelo = new $modelo;
