@@ -42,11 +42,17 @@ class indexController extends Controller{
 		}
 	}
 
-	//noticias/editar
-	public function editar(){	
+	//noticias/listado
+	public function listado($seccion=false){
+		
 		$noticias = $this->loadModel('noticia');
-		if($noticias = $noticias->getNoticias()){
+	
+		if($noticias = $noticias->getNoticias($seccion)){
 			$this->_view->_noticias = $noticias;
+		}
+		$secciones = $this->loadModelFromOtherComponent('seccion','secciones');
+		if($secciones = $secciones->getSecciones()){
+			$this->_view->_secciones = $secciones;
 		}
 		$this->_view->renderizar('listado',true);
 		
@@ -54,7 +60,6 @@ class indexController extends Controller{
 	
 	//noticias/eliminar
 	public function eliminar(){	
-		
 		if(isset($_POST['noticias'])) {
 			$noticias = $_POST['noticias'];
 			$noticia = $this->loadModel('noticia');
@@ -67,7 +72,7 @@ class indexController extends Controller{
 			Alertify::add('No seleccionó ninguna noticia.','log');
 		}
 		
-		header('location: '.BASE_URL_COM . 'editar');
+		header('location: '.BASE_URL_COM . 'listado');
 		 exit;
 	}
 }

@@ -39,8 +39,8 @@ class Bootstrap{
 				call_user_func(array($controller,$metodo));
 		}
 		
-		else{ //Significa que no existe el controlador buscado. Entonces veo si existe el método en lugar del controller del indexController
-			  //Así si llamo a /login/validar y no existe el controlador validar buscará el método validar en el indexController del componente login
+		else{ //Significa que no existe el controlador buscado. Entonces veo si existe el mÃ©todo en lugar del controller del indexController
+			  //AsÃ­ si llamo a /login/validar y no existe el controlador validar buscarÃ¡ el mÃ©todo validar en el indexController del componente login
 			  ///login/validar/arg1/arg2/arg3
 			  
 			$controller = 'indexController';
@@ -49,8 +49,8 @@ class Bootstrap{
 
 			$metodo = $peticion->getControlador();	
 			
-			//Al desplazarse a la izq los parámetros el método pasaría a ser el primer argumento
-			if($peticion->getMetodo()){
+			//Al desplazarse a la izq los parï¿½metros el mÃ©todo pasarÃ­a a ser el primer argumento
+			if($peticion->getMetodo()!='index'){
 				array_push($args, $peticion->getMetodo());
 			}
 			array_push($args, $peticion->getArgs());

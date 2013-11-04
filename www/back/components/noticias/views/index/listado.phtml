@@ -1,3 +1,12 @@
+<script type="text/javascript" src="<?php echo BASE_URL;?>components/noticias/public/js/noticias.js"></script>
+<?php 	
+			echo '<select name="seccion" id="secciones">';
+			echo '<option value="false">Secciones</option>';
+			foreach ($this->_secciones as $seccion){
+				echo '<option value='.BASE_URL_COM.'listado/'.$seccion['id'].'>'.$seccion['seccion'].'</option>';
+			}		
+			echo '</select>';
+			?>
 <form name="noticiasForm" method="post" action="<?php echo BASE_URL_COM.'eliminar'; ?>">
 <table>
 	<tr>

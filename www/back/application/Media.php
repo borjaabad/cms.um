@@ -11,12 +11,40 @@ class Media{
 	
 	public function js(){
 		//JS Base del framework
-		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'js.phtml';	
+		include_once ROOT . 'views' . DS . 'common' . DS . 'js.phtml';
+		
+		//JS de cada componente
+		if($this->js = Component::getJs()){
+			foreach ($this->js as $js){
+
+				//Ruta local del componente BASEURL/components/component/public/views/js
+				if($js->allowedviews){//NO VA EN TODAS LAS VISTAS, verifica que se pueda mostrar en esa vista ya sean file o url		
+
+					foreach($js->allowedviews->view as $view){
+						if($view == VIEW){
+							foreach ($js->url as $url)
+								echo PHP_EOL.'<script type="text/javascript" src="'.$url.'"></script>';
+							
+							foreach ($js->file as $file)
+						 		echo PHP_EOL.'<script type="text/javascript" src="'.BASE_URL.'components/'.NAME_COM.'/public/views/js/'.$js->file.'"></script>';
+						}
+					}
+				}
+				else{//VA EN TODAS LAS VISTAS, no está definido views
+					foreach ($js->url as $url)
+						echo PHP_EOL.'<script type="text/javascript" src="'.$url.'"></script>';
+					
+					foreach ($js->file as $file)
+				 		echo PHP_EOL.'<script type="text/javascript" src="'.BASE_URL.'components/'.NAME_COM.'/public/views/js/'.$js->file.'"></script>';
+				}
+			}
+		}
 	}
 	
 	public function css(){
 		
 		//JS Base del framework
+		echo PHP_EOL;
 		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'css.phtml';
 	}
 	

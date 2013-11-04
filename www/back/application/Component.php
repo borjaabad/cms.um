@@ -17,15 +17,21 @@ class Component {
 			return false;
 	}
 	
-	public function myComponent(){
-		
-		GLOBAL $componentes;
-		foreach ($componentes->component as $componente){
-			
+	public function getJs(){
+		GLOBAL $components;
+		$js = array();
+		foreach ($components->component as $componente){
+			if($componente->name == NAME_COM){
+				foreach ($componente->media->js as $scripts)
+					array_push($js, $scripts);
+			}
 		}
-		
-		return $miComponente;
+		if(count($js))
+			return $js;
+
+		return false;
 	}
+
 	
 	public function loadComponent($request){
 	

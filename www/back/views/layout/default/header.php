@@ -8,7 +8,7 @@ header('Content-Type: text/html; charset=utf8');
     <title>Login CMS.UM</title>
     <meta name="description" content="CMS.UM">
     <meta name="author" content="Borja Abad">
-	<?php  Media::js();  ?>
+	<?php  Media::js();   ?>
 	<?php  Media::css();  ?>
   </head>
 	<body>

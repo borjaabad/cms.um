@@ -46,6 +46,10 @@ class Model
 
 		return 0;
 	}
+	protected function validaInt($int){
+		filter_input(INPUT_POST, $int, FILTER_VALIDATE_INT);
+		return $int;
+	}
 }
 
 ?>

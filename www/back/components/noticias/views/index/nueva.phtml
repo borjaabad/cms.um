@@ -3,22 +3,21 @@
 		<tr>
 			<td>
 				<?php 
-				Form::select($this->_firmantes,'id','nombre','Firmantes');
+				Form::select($this->_firmantes,'id','nombre','firmante','Firmante');
 				?>
 			</td>
 			<td>
-			<?php 
-				Form::select($this->_secciones,'id','seccion','Secciones');
+			<?php
+				Form::select($this->_secciones,'id','seccion','secciones','Sección');
 				?>
 			</td>
 			<td>Orden	
 				<input type="text" name="orden"  size="5"  maxlength="9"/>
 			</td>
-			<td></td>
 			<td>
 				<?php Form::button('Guardar noticia','positive','add'); ?>
-				<?php Form::button('Ampliar noticia','regular','blue'); ?>
-				<?php Form::button('Eliminar noticia','negative','delete'); ?>
+				<?php //Form::button('Ampliar noticia','regular','blue'); ?>
+				<?php //Form::button('Eliminar noticia','negative','delete'); ?>
 	 
 			</td>
 		</tr>

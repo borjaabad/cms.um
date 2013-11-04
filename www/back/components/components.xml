@@ -26,6 +26,18 @@
 					<default>false</default>
 				</menuItem>
 			</menus>
+			<media>
+				<js>
+					<file>nueva.js</file>
+					<allowedviews>
+						<view>nueva</view>
+					</allowedviews>
+				</js>
+				<js>
+					<url>http://code.jquery.com/jquery-1.4.4.js</url>					
+					<file>common.js</file>
+				</js>
+			</media>
 			<sqlprefix>not_</sqlprefix>
 			<enabled>true</enabled>
 		</component>		

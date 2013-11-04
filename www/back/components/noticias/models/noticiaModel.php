@@ -18,9 +18,16 @@ class noticiaModel extends Model{
 		
 	}
 
-	public function getNoticias() {
+	public function getNoticias($seccion) {
+		$noticias = new noticiaModel();
+		if(!$seccion)
+			$sql ='';
+		else 
+			$sql =' WHERE id_seccion='.$this->validaInt($seccion);
 		try {	
-			$noticias = $this->_db->query("SELECT * FROM noticias") or die(mysql_error().mysql_errno());
+			$query = "SELECT * FROM noticias $sql";
+			$noticias = $noticias->_db->query($query) or die(mysql_error().mysql_errno());
+			
 			return $noticias->fetchAll();
 		}
 		catch (PDOException $e) {
