@@ -22,8 +22,9 @@ class Component {
 		$js = array();
 		foreach ($components->component as $componente){
 			if($componente->name == NAME_COM){
-				foreach ($componente->media->js as $scripts)
-					array_push($js, $scripts);
+				if($componente->media->js)
+					foreach ($componente->media->js as $array)
+						array_push($js, $array);
 			}
 		}
 		if(count($js))
@@ -32,6 +33,23 @@ class Component {
 		return false;
 	}
 
+		
+	public function getCss(){
+		GLOBAL $components;
+		$css = array();
+		foreach ($components->component as $componente){
+			if($componente->name == NAME_COM){
+				if($componente->media->css)
+					foreach ($componente->media->css as $array)
+						array_push($css, $array);
+			}
+		}
+		if(count($css))
+			return $css;
+
+		return false;
+	}
+	
 	
 	public function loadComponent($request){
 	

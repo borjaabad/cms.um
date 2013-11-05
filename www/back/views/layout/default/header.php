@@ -8,12 +8,12 @@ header('Content-Type: text/html; charset=utf8');
     <title>Login CMS.UM</title>
     <meta name="description" content="CMS.UM">
     <meta name="author" content="Borja Abad">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php  Media::js();   ?>
 	<?php  Media::css();  ?>
   </head>
-	<body>
-		<div id="container">
+<body style="">
+	<div id="wrapper">
 		<?php include 'menu.php';?>
-		<?php include 'top_bar.php';?>
-		<div id="componente">
+		<?php //include 'top_bar.php';?>
 			

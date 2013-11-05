@@ -5,37 +5,40 @@ class Media{
 	public $css;
 	public $js;
 	
-	public function __construct(Request $peticion){
+	public function __construct(){
 		
 	}
 	
-	public function js(){
-		//JS Base del framework
-		include_once ROOT . 'views' . DS . 'common' . DS . 'js.phtml';
+	public function js($type=false){
+		if(!$type)
+			$type = 'js';
 		
-		//JS de cada componente
-		if($this->js = Component::getJs()){
-			foreach ($this->js as $js){
+		//JS/CSS Base del framework
+		include_once ROOT . 'views' . DS . 'common' . DS . $type.'.phtml';
+		
+		//JS/CSS de cada componente
+		if($this->type = Component::getJs()){
+			foreach ($this->type as $type){
 
-				//Ruta local del componente BASEURL/components/component/public/views/js
-				if($js->allowedviews){//NO VA EN TODAS LAS VISTAS, verifica que se pueda mostrar en esa vista ya sean file o url		
+				//Ruta local del componente BASEURL/components/component/public/views/js */css
+				if($type->allowedviews){//NO VA EN TODAS LAS VISTAS, verifica que se pueda mostrar en esa vista ya sean file o url		
 
-					foreach($js->allowedviews->view as $view){
+					foreach($type->allowedviews->view as $view){
 						if($view == VIEW){
-							foreach ($js->url as $url)
+							foreach ($type->url as $url)
 								echo PHP_EOL.'<script type="text/javascript" src="'.$url.'"></script>';
 							
-							foreach ($js->file as $file)
-						 		echo PHP_EOL.'<script type="text/javascript" src="'.BASE_URL.'components/'.NAME_COM.'/public/views/js/'.$js->file.'"></script>';
+							foreach ($type->file as $file)
+						 		echo PHP_EOL.'<script type="text/javascript" src="'.BASE_URL.'components/'.NAME_COM.'/public/'.$type.'/'.$type->file.'"></script>';
 						}
 					}
 				}
 				else{//VA EN TODAS LAS VISTAS, no está definido views
-					foreach ($js->url as $url)
+					foreach ($type->url as $url)
 						echo PHP_EOL.'<script type="text/javascript" src="'.$url.'"></script>';
 					
-					foreach ($js->file as $file)
-				 		echo PHP_EOL.'<script type="text/javascript" src="'.BASE_URL.'components/'.NAME_COM.'/public/views/js/'.$js->file.'"></script>';
+					foreach ($type->file as $file)
+				 		echo PHP_EOL.'<script type="text/javascript" src="'.BASE_URL.'components/'.NAME_COM.'/public/'.$type.'/'.$type->file.'"></script>';
 				}
 			}
 		}
@@ -43,9 +46,8 @@ class Media{
 	
 	public function css(){
 		
-		//JS Base del framework
-		echo PHP_EOL;
-		include_once ROOT . DS . 'views' . DS . 'common' . DS . 'css.phtml';
+		$css = new Media( );
+		$css->js('css');
 	}
 	
 	 
@@ -56,7 +58,7 @@ class Media{
 	public function AddCss($archivo,$default = true){
 		if($default){			
 			if(is_readable(ROOT.DS.'components'.$this->_componente.DS.'public'.DS.'css'.DS.$archivo))
-				echo '<link rel="StyleSheet" href="' . BASE_URL . 'components/' .$this->_componente.'/public/css/'.$archivo.'" type="text/css">';
+				echo '<link rel="StyleSheet" href="' . BASE_URL . 'components/' .$this->_componente.'/css/'.$archivo.'" type="text/css">';
 		}
 		else{
 			throw new Exception("Error en la carga del CSS");

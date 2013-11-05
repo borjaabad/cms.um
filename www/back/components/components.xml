@@ -28,14 +28,10 @@
 			</menus>
 			<media>
 				<js>
-					<file>nueva.js</file>
+					<file>listado.js</file>
 					<allowedviews>
-						<view>nueva</view>
+						<view>listado</view>
 					</allowedviews>
-				</js>
-				<js>
-					<url>http://code.jquery.com/jquery-1.4.4.js</url>					
-					<file>common.js</file>
 				</js>
 			</media>
 			<sqlprefix>not_</sqlprefix>

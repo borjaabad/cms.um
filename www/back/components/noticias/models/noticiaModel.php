@@ -18,14 +18,15 @@ class noticiaModel extends Model{
 		
 	}
 
-	public function getNoticias($seccion) {
+	public function getNoticias($seccion=false) {
 		$noticias = new noticiaModel();
 		if(!$seccion)
 			$sql ='';
 		else 
-			$sql =' WHERE id_seccion='.$this->validaInt($seccion);
+			$sql =' AND id_seccion='.$this->validaInt($seccion);
 		try {	
-			$query = "SELECT * FROM noticias $sql";
+			$query = "SELECT noticias.id, noticias.titulo, noticias.orden, secciones.seccion, firmantes.nombre
+					  FROM noticias,secciones,firmantes WHERE secciones.id=noticias.id_seccion and noticias.id_firmante=firmantes.id $sql";
 			$noticias = $noticias->_db->query($query) or die(mysql_error().mysql_errno());
 			
 			return $noticias->fetchAll();
@@ -45,7 +46,7 @@ class noticiaModel extends Model{
 			$noticia->texto = $this->getTexto('texto');
 			$noticia->orden = $this->getInt('orden');
 			$noticia->seccion = $this->getInt('seccion');
-			$noticia->firmante = $this->getInt('firmante');
+			$noticia->firmante = $this->getInt('nombre');
 		try {
 			$conn = $noticia->_db->prepare("INSERT INTO noticias (`titulo`, `subtitulo`, `entradilla`, `texto`, `orden`, `id_seccion`, `id_firmante`) 
 			 VALUES (?,?,?,?,?,?,?)");			

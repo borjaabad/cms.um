@@ -1,7 +1,7 @@
 <script type="text/javascript" src="<?php echo BASE_URL;?>components/noticias/public/js/noticias.js"></script>
 <?php 	
 			echo '<select name="seccion" id="secciones">';
-			echo '<option value="false">Secciones</option>';
+			echo '<option value="0">Secciones</option>';
 			foreach ($this->_secciones as $seccion){
 				echo '<option value='.BASE_URL_COM.'listado/'.$seccion['id'].'>'.$seccion['seccion'].'</option>';
 			}		
@@ -24,8 +24,8 @@
 				echo '<td style="width:25px;">'.$noticia['id'].'</td>';
 				echo '<td>'.$noticia['titulo'].'</td>';
 				echo '<td>'.$noticia['orden'].'</td>';
-				echo '<td>'.$noticia['id_seccion'].'</td>';
-				echo '<td>'.$noticia['id_firmante'].'</td>';
+				echo '<td>'.$noticia['seccion'].'</td>';
+				echo '<td>'.$noticia['nombre'].'</td>';
 				echo '</tr>';
 			}
 		}?>

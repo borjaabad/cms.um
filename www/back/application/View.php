@@ -15,7 +15,8 @@ class View{
 
 	public function renderizar($vista,$item = false){
 		
-		define('VIEW',$vista);
+		if(!defined('VIEW'))
+			define('VIEW',$vista);
 		
 		$rutaView = ROOT. 'components'. DS .$this->_componente. DS .'views' . DS . $this->_controlador . DS . $vista . '.phtml';
 			

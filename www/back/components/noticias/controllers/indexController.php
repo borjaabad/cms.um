@@ -28,14 +28,14 @@ class indexController extends Controller{
 	public function agregar(){	
 		if($_POST){
 			$noticia = $this->loadModel('noticia');
-			if($noticia->agregar()){
+			if($noticia->agregar($_POST)){
 				Alertify::add('La noticia se agregó correctamente','success');
-				header('Location: '.BASE_URL_COM.'editar');
+				header('Location: '.BASE_URL_COM.'listado');
 				exit;
 			}
 			else{
 				Alertify::add('Hubo un problema al guardar la noticia','error');
-				header('Location: '.BASE_URL_COM.'editar');
+				header('Location: '.BASE_URL_COM.'listado');
 				exit;
 			}
 			
@@ -46,16 +46,16 @@ class indexController extends Controller{
 	public function listado($seccion=false){
 		
 		$noticias = $this->loadModel('noticia');
-	
-		if($noticias = $noticias->getNoticias($seccion)){
-			$this->_view->_noticias = $noticias;
-		}
 		$secciones = $this->loadModelFromOtherComponent('seccion','secciones');
-		if($secciones = $secciones->getSecciones()){
-			$this->_view->_secciones = $secciones;
-		}
-		$this->_view->renderizar('listado',true);
 		
+		$this->_view->_noticias = $noticias->getNoticias($seccion);
+		$this->_view->_secciones = $secciones->getSecciones();
+		
+		if(!$this->_view->_noticias)
+			Alertify::add('No existen noticias en la sección seleccionada','log');
+		if(!$this->_view->_secciones)
+			Alertify::add('No existe ninguna sección','log');
+		$this->_view->renderizar('listado',true);
 	}
 	
 	//noticias/eliminar
