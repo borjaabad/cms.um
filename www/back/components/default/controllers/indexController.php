@@ -8,7 +8,7 @@ class indexController extends Controller{
 			Session::destroy();
 			$this->redireccionar('login');
 		}
-		Menu::resetMenu();
+		//Menu::resetMenu();
 	}
 	
 	public function index(){

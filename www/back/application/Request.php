@@ -30,6 +30,14 @@ class  Request{
 		if(!isset($this->_argumentos))
 			$this->_argumentos = array();
 			
+		if(!defined('CONTROLADOR'))	
+			define('CONTROLADOR' , $this->_controlador);
+		if(!defined('COMPONENTE'))	
+			define('COMPONENTE' , $this->_componente);
+		if(!defined('METODO'))	
+			define('METODO' , $this->_metodo);
+									
+			
 	}
 	
 	

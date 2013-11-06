@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<body style="">
+<script type="text/javascript">
+	
+
+
+	var arr = [
+		"http://www.melillahoy.es/noticia.asp?ref=24824",
+		"http://www.melillahoy.es/noticia.asp?ref=26600",
+		"http://www.melillahoy.es/noticia.asp?ref=26383",
+		"http://www.diariodeibiza.es/pi-pasatiempos",
+		"http://www.guadanews.es/noticia.asp?ref=18585",
+		"http://www.guadanews.es/noticia.asp?ref=18586",
+		"http://www.guadanews.es/noticia.asp?ref=18587",
+		"http://www.estedemadrid.com/noticia.asp?ref=31919",
+		"http://www.estedemadrid.com/noticia.asp?ref=31920",
+		"http://www.estedemadrid.com/noticia.asp?ref=31921"
+	];
+
+	var longitud = arr.length;
+	var cuenta = arr.length;
+	var requerimientos = 0;
+	
+	$( document ).ready(function() {
+		setInterval("peticiones()",5000);
+	});
+	
+	function peticiones(){
+		
+		var length = arr.length,
+		element = arr[cuenta -1];
+		cuenta = cuenta -1;
+		
+		if(cuenta==0)
+		  cuenta = length;
+		  $.post( "file_get_contents.php", { url: element }).done(function( data ) {
+			requerimientos ++;
+			processData(data);
+		  });
+	}	
+	
+	function processData(data){
+
+		
+		var sites = '';
+		for(var i=0; i<longitud; i++){
+			sites = sites + '<br>' + arr[i];
+			
+		}
+	
+		$('#content').html(data);
+		$('#nroRequest').html('Nro. total de requerimientos: ' +requerimientos + sites);
+
+	}
+
+
+		
+</script>
+<div style="width:900px;margin:auto;" id="nroRequest"></div>
+<div style="width:900px;margin:auto;" id="sitiosRequest"></div>
+<div id="content" style="overflow: hidden;width:900px;height:600px;margin:auto; border:1px solid black;">
+</div>
+	
+</body></html>

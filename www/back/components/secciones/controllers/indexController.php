@@ -12,7 +12,7 @@ class indexController extends Controller{
 	public function index(){
 		$seccion = $this->loadModel('seccion');
 		$this->_view->_secciones = $seccion->getSecciones();
-		$this->_view->renderizar('listado',true);
+		$this->_view->renderizar('ok',true);
 	}
 
 	//secciones/agregar

@@ -1,20 +1,9 @@
-<a href="<?php echo BASE_URL; ?>">
-	<div id="menuItem">
-		 << Noticias
-	</div>
-</a>
-<a href="<?php echo BASE_URL_COM.'nueva'; ?>">
-	<div id="menuItem">
-		Nueva
-	</div>
-</a>
-<a href="<?php echo BASE_URL_COM.'listado'; ?>">
-	<div id="menuItem">
-		Listado
-	</div>
-</a>
-<a href="<?php echo BASE_URL_COM.'firmantes'; ?>">
-	<div id="menuItem">
-		Firmantes
-	</div>
-</a>
+				
+				
+				<?php if(COMPONENTE=='noticias') $active='active'; else $active='';?>
+				<ul class="sidebar-group tab-pane <?php echo $active; ?>" id="noticias">
+					<li class="navigation-header">Noticias</li>
+					<li><a href="<?php echo BASE_URL; ?>noticias/nueva">Nueva</a></li>
+					<li><a href="<?php echo BASE_URL; ?>noticias/listado">Listado</a></li>
+					<li><a href="<?php echo BASE_URL; ?>noticias/firmantes">Firmantes</a></li>
+				</ul>

@@ -47,6 +47,11 @@ class noticiaModel extends Model{
 			$noticia->orden = $this->getInt('orden');
 			$noticia->seccion = $this->getInt('seccion');
 			$noticia->firmante = $this->getInt('nombre');
+							
+				if($noticia->orden=='' || $noticia->seccion=='' || $noticia->firmante=='')
+					return false;
+
+			
 		try {
 			$conn = $noticia->_db->prepare("INSERT INTO noticias (`titulo`, `subtitulo`, `entradilla`, `texto`, `orden`, `id_seccion`, `id_firmante`) 
 			 VALUES (?,?,?,?,?,?,?)");			

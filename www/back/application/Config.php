@@ -6,7 +6,7 @@ define('DEFAULT_COMPONENT','default');
 define('DEFAULT_LAYOUT','default');
 
 define('APP_NAME','CMS :: UM');
-define('APP_COMPANY','Facultad de ingeniería');
+define('APP_COMPANY','Facultad de ingenierï¿½a');
 define('APP_SLOGAN','Gestor de contenidos');
 
 define('USER','cms');

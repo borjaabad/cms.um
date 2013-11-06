@@ -1,114 +1,106 @@
 <?php
 
-class Menu{
-	
-	
+class Menu extends Request{
+
+
 	public function __construct(){
 		//parent::__construct();
 	}
 
-	public function mostrar($menu=false){
-	
-		
-		
-		
-		$menuObj = new Menu();
-		
-		
-		if($path = $menuObj->getMenuFromComponent($menu)){
-			$path = str_ireplace('/', DS , $path);
-			echo  '<div id="menu"><div id="separador"></div>';
-			include_once ROOT .DS. 'components' .DS. $path;
-			echo  '</div>';	
-			
-			return true;
-		}
-		else{
-		$menuHtml  = '<div id="menu"><div id="separador"></div>';
-		$menuHtml .= $menuObj->getItemsMenu();
-		$menuHtml .= '</div>';	
-		
-		echo $menuHtml;
-		return true;
-		}
-		return false;
-	}
-	
-	public function getMenuFromComponent($menu){
-		//Comprobamos si el componente cargado tiene algún menu por defecto
-		GLOBAL $components;
-		foreach ($components->component as $component){
-			if($component->name == NAME_COM){
-				if(isset($component->menus->menuItem)){
-					foreach ($component->menus->menuItem as $menuItem){
-						if($menuItem->name == $menu)
-							return $menuItem->path; 
-						if(isset($menuItem->default)){
-							if($menu==false && $menuItem->default=='true')
-								return $menuItem->path; 
-						}
-					}
-				}
-				return false; //no tiene menus
-			}		
-		}
-		return false;
-	}
-	
-	
-	
-	private function getItemsMenu(){
-		
+	public function getItemsMenu(){
+
 		GLOBAL $components;
 		$items = '';
+
 		foreach ($components->component as $componente){
-			if($componente->menu == 'true' && $componente->enabled == 'true')			
-				$items .= '<a href="'.BASE_URL.$componente->name.'">
-							<div id="menuItem">'.
-								$componente->displayName.'
-						    </div>
-						   </a>'; 
+			if($componente->menu == 'true' && $componente->enabled == 'true'){
+			
+				//Tiene submenús
+				if(isset($componente->menus->menuItem)){
+					echo COMPONENTE . ' ------------- ' . $componente->name;
+					$items .= '
+								<div class="itemMenuComponentes" id="menu'.$componente->name.'">
+										<a href="#'.$componente->name.'" data-toggle="tab" class="enlaceComponente" >
+											<div>
+												<img alt="config" height="40px" src="http://cms.um/back/components/'.$componente->name.'/public/img/'.$componente->img.'">
+											</div>
+											'.$componente->displayName.'
+										</a>
+								</div>
+								
+								<script type="text/javascript">	
+														
+									$(\'#menu'.$componente->name.'\').on(\'click\',function(){
+										if($("#sidebar-wrapper").width()==120){
+											$("#sidebar-wrapper").width(310);
+											$("#wrapper").css(\'padding-left\',310);
+										}else{
+											$("#sidebar-wrapper").width(120);
+											$("#wrapper").css(\'padding-left\',120);
+										}
+										
+									});
+								</script>
+								
+								';
+					
+				}
+				//No tiene submenús
+				else{
+					$items .= '
+								<div class="itemMenuComponentes" id="menu'.$componente->name.'">
+										<a href="'.BASE_URL.$componente->name.'" class="enlaceComponente" >
+											<div>
+												<img alt="config" height="40px" src="http://cms.um/back/components/'.$componente->name.'/public/img/'.$componente->img.'">
+											</div>
+											'.$componente->displayName.'
+										</a>
+								</div>';
+					
+					if(COMPONENTE == $componente->name){
+						$items .= '
+									<script type="text/javascript">
+										$("#sidebar-wrapper").width(120);
+										$("#wrapper").css(\'padding-left\',120);
+									</script>
+									';
+					}
+				}
+				if(COMPONENTE == $componente->name){
+					$items .= 	'
+								<script type="text/javascript">
+									$("#menu'.$componente->name.'").addClass("menuActive");
+								</script>
+								';
+				}
+			}
 		}
-		return $items;
+		echo $items;
 	}
-	public function resetMenu(){
-		Session::destroy('menu');
-	}
-	public function setMenu($opt){
-		switch($opt){
-			case 'noticias':
-				$menu = '
-						<a href="'.BASE_URL.'">
-							<div id="menuItem">
-								 << Noticias
-							</div>
-						</a>
-						<a href="'.BASE_URL_COM.'nueva">
-							<div id="menuItem">
-								Nueva
-							</div>
-						</a>
-						<a href="'.BASE_URL_COM.'editar">
-							<div id="menuItem">
-								Editar
-							</div>
-						</a>
-						<a href="'.BASE_URL_COM.'firmantes">
-							<div id="menuItem">
-								Firmantes
-							</div>
-						</a>
-						<a href="'.BASE_URL_COM.'estilos">
-							<div id="menuItem">
-								Estilos
-							</div>
-						</a>';
-				Session::set('menu', $menu);
-				break;
-			default:
-				Session::destroy('menu');
+
+
+	public function getItemsSubmenu(){
+
+		GLOBAL $components;
+		$items = '';
+
+		foreach ($components->component as $componente){
+				if(isset($componente->menus->menuItem)){
+
+					foreach ($componente->menus->menuItem as $menuItem){
+					$active = '';
+						if(COMPONENTE == $componente->name && CONTROLADOR == $menuItem->controller)
+							$active = ' active';
+						include_once ROOT.'components'.DS.$menuItem->path;
+					}
+				}
+				else 
+					include_once ROOT.'views'.DS.'common'.DS.'subMenuDefault.phtml';
+			
+							
 		}
 	}
+
 
 }
 

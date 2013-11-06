@@ -52,23 +52,24 @@ a:hover,a:active,a:focus {
 
 .itemMenuComponentes:HOVER{
 	background: #1C1C1C;
-	color:#E6E6E6;
 }
 
-.enlaceComponente{
-	color:#8693a0;
-}
-.enlaceComponente:HOVER{
-	color:#E6E6E6;
+a .enlaceComponente{
+	color:#A4A4A4;
 }
 
-.enlaceComponente:VISITED{
-	color:#8693a0;
+a:hover,a:active,a:focus .enlaceComponente{
+	color:white;
 }
+
 
 #wrapper {
 	padding-left: 310px;
 	transition: all 0.4s ease 0s
+}
+
+.menuActive{
+	background: #1C1C1C;
 }
 
 #sidebar-wrapper {

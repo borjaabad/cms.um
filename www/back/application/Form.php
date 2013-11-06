@@ -17,9 +17,9 @@ class Form{
 		
 	}
 
-	public function select($array,$value,$select,$id='select',$first='Seleccione uno'){
+	public function select($array,$value,$select,$id='select',$first='Seleccione uno',$class=''){
 		if(isset($array)){
-			echo '<select name="'.$select.'" id="'.$id.'">';
+			echo '<select name="'.$select.'" id="'.$id.'" class="'.$class.'">';
 			echo '<option value="">'.$first.'</option>';
 			foreach ($array as $arr){
 				echo '<option value='.$arr[$value].'>'.$arr[$select].'</option>';
