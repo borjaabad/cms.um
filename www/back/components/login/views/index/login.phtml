@@ -1,3 +1,105 @@
+
+
+<!-- Content area -->
+		<div id="content-wrapper">
+			<!-- Site header -->
+			<header class="main-header">
+				
+				<!-- Page title -->
+				<h3>
+					<a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
+					CMS.UM
+				</h3>
+			</header>
+			<!-- /Site header -->		
+			<!-- Main Content -->
+			<section class="main-content padding">
+				
+				<div class="row">
+					
+					<!-- Basic forms -->
+					<div class="col-lg-4 col-lg-offset-4">
+						<div class="module">
+							<div class="module-header"><h4>Login</h4></div>
+							<div class="module-content">
+								<form method="post" action="<?php echo BASE_URL.'login/validar/'; ?>" class="form-horizontal" >
+									<div class="form-group">
+									</div>								
+									<div class="form-group">
+									</div>						
+									<div class="form-group">
+										<label for="select1" class="col-lg-3 col-lg-offset-1 control-label">Usuario</label>
+										<div class="col-lg-5">
+											<input type="text" class="form-control" name="user"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="select1" class="col-lg-3 col-lg-offset-1 control-label">Contraseña</label>
+										<div class="col-lg-5">
+											<input type="text" class="form-control" name="pass"/>
+										</div>
+									</div>
+									<div class="form-group">
+									</div>								
+									<div class="form-group">
+									</div>
+									<div class="form-group">
+										<div class="col-lg-offset-4 col-lg-10">
+											<button class="btn btn-primary">Guardar noticia</button>
+										</div>
+									</div>
+
+								</form>
+
+							</div>
+						</div>
+					</div>
+					<!-- /Basic forms -->
+				</div>
+
+			</section>
+			<!-- /Main Content -->
+
+		</div>
+		<!-- /Content area -->
+		<!-- 
+		
+			<form method="post" action="<?php echo BASE_URL.'noticias/agregar'; ?>">
+	<table>
+		<tr>
+			<td>
+				<?php 
+				Form::select($this->_firmantes,'id','nombre','firmante','Firmante');
+				?>
+			</td>
+			<td>
+			<?php
+				Form::select($this->_secciones,'id','seccion','secciones','Sección');
+				?>
+			</td>
+			<td>Orden	
+				<input type="text" name="orden"  size="5"  maxlength="9"/>
+			</td>
+			<td>
+				<?php Form::button('Guardar noticia','positive','add'); ?>
+				<?php //Form::button('Ampliar noticia','regular','blue'); ?>
+				<?php //Form::button('Eliminar noticia','negative','delete'); ?>
+	 
+			</td>
+		</tr>
+	</table>
+	<h2>Título</h2>	
+		<textarea rows="1"  name="titulo"></textarea>
+	<h2>Subtítulo</h2>
+		<textarea rows="1"  name="subtitulo"></textarea>	
+	<h2>Entradilla</h2>
+		<textarea rows="4"  name="entradilla"></textarea>
+	<h2>Texto</h2>	
+		<textarea rows="15"  name="texto"></textarea>
+</form>*//Content area 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,4 +123,4 @@
     </div>
         <?php Alertify::mostrarMensajes();?>
   </body>
-</html>
+</html>-->

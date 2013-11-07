@@ -9,7 +9,7 @@ class indexController extends Controller{
 	
 	//login/
 	public function index(){
-		$this->_view->renderizar('login');
+		$this->_view->renderizar('login',true,false);
 	}
 	
 	/*
@@ -42,7 +42,7 @@ class indexController extends Controller{
 		else 
 			$this->_view->renderizar('login');
 	}
-	public function cerrarSesion(){	
+	public function cerrarsesion(){	
 			Session::destroy();
 			header("Location:" . BASE_URL );
 	}

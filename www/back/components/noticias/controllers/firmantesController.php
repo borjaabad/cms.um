@@ -32,12 +32,15 @@ class firmantesController extends Controller{
 					Alertify::add('Hubo un error. El firmante no fue agregado','error');
 			}
 		}
+		else
+			Alertify::add('No puede ser vacio','error');
 		header('location: '.BASE_URL_COM.'firmantes');
 		exit;
 	}
 	
 	//noticias/firmantes/eliminar
 	public function eliminar(){
+		
 		if(isset($_POST['firmantes'])) {
 			$firmantes = $_POST['firmantes'];
 			$firmante = $this->loadModel('firmante');
@@ -46,7 +49,8 @@ class firmantesController extends Controller{
 				Alertify::add('Eliminación OK','success');
 			else 
 				Alertify::add('Hubo un problema con la eliminación.','error');
-		}else{
+		}
+		else{
 			Alertify::add('No seleccionó ningún firmante.','log');
 		}
 		

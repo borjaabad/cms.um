@@ -41,7 +41,7 @@ class Bootstrap{
 		
 		else{ //Significa que no existe el controlador buscado. Entonces veo si existe el método en lugar del controller del indexController
 			  //Así si llamo a /login/validar y no existe el controlador validar buscará el método validar en el indexController del componente login
-			  ///login/validar/arg1/arg2/arg3
+			  ///login/validar/arg1/arg2/arg3. Esto me evitar usar la menos acertada url /login/index/validar/arg1/arg2/arg3
 			  
 			$controller = 'indexController';
 			

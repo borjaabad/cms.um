@@ -13,11 +13,13 @@ class View{
 
 	}
 
-	public function renderizar($vista,$item = false){
+	public function renderizar($vista,$item = false, $menu = true){
 		
 		if(!defined('VIEW'))
 			define('VIEW',$vista);
-		
+		if(!defined('MENU'))
+			define('MENU',$menu);
+			
 		$rutaView = ROOT. 'components'. DS .$this->_componente. DS .'views' . DS . $this->_controlador . DS . $vista . '.phtml';
 			
 		//Si no existe un controlador con ese nombre busca la vista en index

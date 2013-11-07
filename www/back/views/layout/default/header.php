@@ -13,7 +13,15 @@ header('Content-Type: text/html; charset=utf8');
 	<?php  Media::css();  ?>
   </head>
 <body style="">
-	<div id="wrapper">
-		<?php include 'menu.php';?>
+	
+		<?php
+		if(MENU){
+			echo  '<div id="wrapper">';
+			include 'menu.php';
+		}
+		else 
+			echo '<div>';
+			
+			?>
 		<?php //include 'top_bar.php';?>
 			
