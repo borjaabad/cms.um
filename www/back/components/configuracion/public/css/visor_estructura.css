@@ -1,0 +1,32 @@
+#visor_estructura td {
+    border:8px solid white;
+    text-align:center;
+    font-size:9pt;
+    font-family:arial;
+    color:white;
+    font-weight: bolder;   
+}
+
+.table-responsive{
+ 
+    padding-left:150px;
+    height: 650px;
+    width:100%;
+}
+
+#MDC {
+    border:1px solid #F4AB51;
+    float:right;
+    margin-right:11px;
+}
+
+.m {
+    background-color:#F4AB51;
+    cursor:pointer;
+}
+
+.m_hover, .negrita, .elegido {
+    background-color:#ce4724;
+    color:fff;
+}
+

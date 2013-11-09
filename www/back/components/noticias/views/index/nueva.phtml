@@ -9,11 +9,11 @@
 					Nueva noticia
 				</h3>
 				<!-- Profile dropdown -->
-				<nav class="user-profile">
+				<span class="user-profile">
 					<a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
 						<span>Cerrar sesión</span>
 					</a>
-				</nav>
+				</span>
 			</header>
 			<!-- /Site header -->
 			
@@ -107,38 +107,4 @@
 
 		</div>
 		<!-- /Content area -->
-		<!-- 
 		
-			<form method="post" action="<?php echo BASE_URL.'noticias/agregar'; ?>">
-	<table>
-		<tr>
-			<td>
-				<?php 
-				Form::select($this->_firmantes,'id','nombre','firmante','Firmante');
-				?>
-			</td>
-			<td>
-			<?php
-				Form::select($this->_secciones,'id','seccion','secciones','Sección');
-				?>
-			</td>
-			<td>Orden	
-				<input type="text" name="orden"  size="5"  maxlength="9"/>
-			</td>
-			<td>
-				<?php Form::button('Guardar noticia','positive','add'); ?>
-				<?php //Form::button('Ampliar noticia','regular','blue'); ?>
-				<?php //Form::button('Eliminar noticia','negative','delete'); ?>
-	 
-			</td>
-		</tr>
-	</table>
-	<h2>Título</h2>	
-		<textarea rows="1"  name="titulo"></textarea>
-	<h2>Subtítulo</h2>
-		<textarea rows="1"  name="subtitulo"></textarea>	
-	<h2>Entradilla</h2>
-		<textarea rows="4"  name="entradilla"></textarea>
-	<h2>Texto</h2>	
-		<textarea rows="15"  name="texto"></textarea>
-</form>*//Content area -->

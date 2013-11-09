@@ -90,6 +90,45 @@ class Component {
 		}
 		return false;
 	}
+	
+	public function enablecomponent($componente,$disable=false){	
+		
+		try{
+			$xml = ROOT.'components'.DS.'components.xml';
+			$componentes = simplexml_load_file($xml);
+			
+			foreach($componentes->components->component as $comp){
+				if($comp->name == $componente  &&  $disable){
+                                        if($comp->locked!='true')
+                                            $comp->enabled = 'false';
+                                        else
+                                            return false;
+					break;
+				}
+				if($comp->name == $componente  &&  !$disable){
+					$comp->enabled = 'true';
+					break;
+				}
+			}
+			if($componentes->asXML($xml)){
+				return true;
+			}
+			return false;
+		}
+		catch (Exception $e){
+			
+			return false;
+		}
+		
+		
+	}
+	
+	public function disablecomponent($componente){
+		$component = new Component();
+		if($component->enablecomponent($componente,true))
+			return true;
+		return false;
+	}
 
 }
 

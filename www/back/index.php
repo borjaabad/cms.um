@@ -5,7 +5,7 @@ define('ROOT', realpath(dirname(__FILE__)) . DS);
 define('APP_PATH', ROOT . 'application' . DS);
 
 
-//Aplicaci�n siempre cargada
+//Aplicación siempre cargada
 require_once APP_PATH . 'Config.php';
 require_once APP_PATH . 'Component.php';
 require_once APP_PATH . 'Request.php';

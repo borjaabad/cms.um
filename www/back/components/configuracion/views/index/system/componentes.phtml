@@ -1,0 +1,52 @@
+<!-- Badges -->
+    <div class="col-lg-6">
+
+            <div class="module">
+                 <div class="module-header"><h4>COMPONENTES</h4></div>
+                    <div class="module-content clearfix">
+
+                            <ul class="nav nav-pills nav-stacked" >
+                            <?php 
+                            if($this->_componentes){
+                                    foreach($this->_componentes->component as $componente){
+                                            if($componente->hidden == 'true')
+                                                    continue;
+                                            ?>
+                                            <li class="active">
+                                            <a>
+                                                    <div class="onoff">
+                                                            <?php 
+                                                            if($componente->enabled == 'true' || !isset($componente->enabled))
+                                                                    $switch = 'Off';
+                                                            else 
+                                                                    $switch = 'On';
+
+                                                            ?>
+                                                            <div class="Switch <?php echo $switch;?>" id="<?php echo $componente->name;?>" >
+                                                                    <div class="Toggle"></div>
+                                                                    <span class="On">on</span>
+                                                                    <span class="Off">off</span>
+                                                            </div>
+                                                    </div>
+                                                    <?php echo $componente->displayName;?>
+                                            </a><br>
+                                            </li>
+                                            <?php 
+                                    }	
+
+                            }?>
+
+
+
+                                    <li>
+                                    <br /><br />
+                                            <p> Puede activar o desactivar los componentes. Es posible que la desactivación de un componente afecte al funcionamiento de otro si este consumía un recurso del anterior.</p>
+
+
+                                    </li>
+                            </ul>
+
+                    </div>
+            </div>
+    </div>
+<!-- /Badges -->

@@ -1,6 +1,7 @@
 /**
  * Default Look and Feel
  */
+ /* #6dba89 */
 .alertify,
 .alertify-log {
 	font-family: sans-serif;
@@ -64,18 +65,15 @@
 		}
 
 .alertify-log {
-	background: #1F1F1F;
-	background: rgba(0,0,0,.9);
+	background: #59636D;
 	padding: 15px;
 	border-radius: 4px;
 	color: #FFF;
 	text-shadow: -1px -1px 0 rgba(0,0,0,.5);
 }
 	.alertify-log-error {
-		background: #FE1A00;
-		background: rgba(254,26,0,.9);
+		background: #c02c34;
 	}
 	.alertify-log-success {
-		background: #5CB811;
-		background: rgba(92,184,17,.9);
+		background: #6dba89;
 	}

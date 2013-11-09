@@ -92,7 +92,7 @@ abstract class Controller
 		return 0;
 	}
 
-	public function esCadena($cadena){
+	public function getCadena($cadena){
 		if(isset($cadena) && !empty($cadena)){
 			$cadena = htmlspecialchars($cadena, ENT_QUOTES);
 			return $cadena;

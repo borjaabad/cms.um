@@ -8,11 +8,11 @@
 				</h3>
 				
 				<!-- Profile dropdown -->
-				<nav class="user-profile">
+				<span class="user-profile">
 					<a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
 						<span>Cerrar sesión</span>
 					</a>
-				</nav>
+				</span>
 
 			</header>
 			<!-- /Site header -->
@@ -58,7 +58,11 @@
 													echo '<tr>';
 													echo '<td style="width:15px;"><input name="noticias[]" type="checkbox" id="checkbox[]" value="'.$noticia['id'].'"></td>';
 													echo '<td style="width:25px;">'.$noticia['id'].'</td>';
-													echo '<td>'.$noticia['titulo'].'</td>';
+													echo '<td>
+															<a class="enlaceNoticia" href="'.BASE_URL_COM.'editar/'.$noticia['id'].'">
+																'.$noticia['titulo'].'
+															</a>
+														  </td>';
 													echo '<td>'.$noticia['orden'].'</td>';
 													echo '<td>'.$noticia['nombre'].'</td>';
 													echo '</tr>';

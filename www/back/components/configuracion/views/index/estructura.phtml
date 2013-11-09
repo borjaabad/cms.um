@@ -1,0 +1,33 @@
+<!-- Content area -->
+<div id="content-wrapper">
+    <header class="main-header">
+        
+        <!-- Page title -->
+        <h3>
+            <a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
+            Estructura de la web
+        </h3>
+            
+        <!-- Profile dropdown -->
+        <span class="user-profile">
+            <a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
+                <span>Cerrar sesión</span>
+            </a>
+        </span>
+            
+    </header>
+    <!-- /Site header -->
+        
+    <!-- Main Content -->
+    <section class="main-content padding">
+        <div class="row">
+         
+            <?php include ROOT_COM.'views'.DS.'index'.DS.'estructura'.DS.'estructura.phtml';?>
+            <?php include ROOT_COM.'views'.DS.'index'.DS.'estructura'.DS.'cabecerapie.phtml';?>
+            <?php include ROOT_COM.'views'.DS.'index'.DS.'estructura'.DS.'informacion.phtml';?>
+
+        </div>
+    </section>
+    <!-- /Main Content -->
+</div>
+<!-- /Content area -->

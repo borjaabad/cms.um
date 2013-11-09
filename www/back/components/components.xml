@@ -1,26 +1,24 @@
+<?xml version="1.0"?>
 <xml>
 	<components>
 		<component>
 			<name>default</name>
 			<menu>false</menu>
 			<enabled>true</enabled>
+			<hidden>true</hidden>
 		</component>
 		<component>
 			<name>login</name>
 			<menu>false</menu>
 			<enabled>true</enabled>
+			<hidden>true</hidden>
 		</component>
 		<component>
 			<name>noticias</name>
 			<displayName>Noticias</displayName>
 			<img>noticias.png</img>
 			<menu>true</menu>
-			<menus>
-				<menuItem>
-					<controller>index</controller>
-					<path>noticias/views/common/menu_main.phtml</path>
-				</menuItem>
-			</menus>
+			<menudir>noticias/views/common/menu_main.phtml</menudir>
 			<media>
 				<js>
 					<file>listado.js</file>
@@ -41,10 +39,39 @@
 		</component>		
 		<component>
 			<name>configuracion</name>
-			<displayName>Configuración</displayName>
+			<displayName>Config.</displayName>
 			<img>config.png</img>
 			<menu>true</menu>
+			<menudir>configuracion/views/common/menu.phtml</menudir>
 			<enabled>true</enabled>
-		</component>		
+			<locked>true</locked>
+			<media>
+				<js>
+					<file>switch.js</file>
+					<allowedviews>
+						<view>system</view>
+					</allowedviews>
+				</js>
+				<css>
+                                	<file>visor_estructura.css</file>
+					<allowedviews>
+						<view>estructura</view>
+					</allowedviews>
+				</css>
+                                <js>
+                                	<file>visor_estructura.js</file>
+					<allowedviews>
+						<view>estructura</view>
+					</allowedviews>
+				</js>                                  
+			</media>
+		</component>
+		<component>
+			<name>galerias</name>
+			<displayName>Galerias de Imágenes</displayName>
+			<img>config.png</img>
+			<menu>false</menu>
+			<enabled>false</enabled>
+		</component>			
 	</components>
 </xml>
