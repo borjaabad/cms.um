@@ -28,13 +28,11 @@ class Model
 	}
 	
 	protected function getTexto($clave)
-	{
+	{   
 		if(isset($_POST[$clave]) && !empty($_POST[$clave])){
 			$_POST[$clave] = htmlspecialchars($_POST[$clave], ENT_QUOTES);
 			return $_POST[$clave];
 		}
-
-		return '';
 	}
 
 	protected function getInt($clave)

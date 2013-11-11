@@ -14,15 +14,15 @@
     </tr>
     <tr>
         <td id="MVI" rowspan="6" class="m">LEFT</td>
-        <td id="MSN" colspan="2" class="m"><?php Noticias::portadaPrincipales(); ?></td>
+        <td id="MSN" colspan="2" class="m"><?php Noticias::seccionPrincipales(); ?></td>
         <td id="MVD" rowspan="6" class="m"><?php Menu::secciones();?></td>
     </tr>
     <tr>
         <td id="NP" colspan="2"></td>
     </tr>
     <tr>
-        <td id="MSNC" class="m"><?php Noticias::portadaIzquierda(); ?></td>
-        <td id="MTC" class="m"><?php Noticias::portadaDerecha(); ?></td>
+        <td id="MSNC" class="m"><?php Noticias::seccionIzquierda(); ?></td>
+        <td id="MTC" class="m"><?php Noticias::seccionDerecha(); ?></td>
     </tr>
     <tr>
         <td id="NC"></td>

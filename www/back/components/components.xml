@@ -38,6 +38,13 @@
 			<enabled>true</enabled>
 		</component>		
 		<component>
+			<name>paginas</name>
+			<displayName>P&#xE1;ginas</displayName>
+			<img>paginas.png</img>
+			<menu>true</menu>
+			<enabled>true</enabled>
+		</component>	                
+		<component>
 			<name>configuracion</name>
 			<displayName>Config.</displayName>
 			<img>config.png</img>
@@ -53,22 +60,22 @@
 					</allowedviews>
 				</js>
 				<css>
-                                	<file>visor_estructura.css</file>
+                    <file>visor_estructura.css</file>
 					<allowedviews>
 						<view>estructura</view>
 					</allowedviews>
 				</css>
-                                <js>
-                                	<file>visor_estructura.js</file>
+                 <js>
+                    <file>visor_estructura.js</file>
 					<allowedviews>
 						<view>estructura</view>
 					</allowedviews>
 				</js>                                  
 			</media>
-		</component>
+		</component>		
 		<component>
 			<name>galerias</name>
-			<displayName>Galerias de Imágenes</displayName>
+			<displayName>Galerias de Im&#xE1;genes</displayName>
 			<img>config.png</img>
 			<menu>false</menu>
 			<enabled>false</enabled>

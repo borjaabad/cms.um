@@ -1,35 +1,40 @@
 <!-- Basic forms -->
-					<div class="col-lg-7">
-						<div class="module module-blue">
-							<div class="module-header"><h4>Configuración básica</h4></div>
-							<div class="module-content">
-
-								<form action="#" class="form-horizontal">
-
-									<div class="form-group">
-										<label for="input1" class="col-lg-4 control-label">Url de la cabecera</label>
-										<div class="col-lg-8">
-                                                                                    <input type="url" class="form-control" id="input1" name="cabecera" placeholder="http://" />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label for="input2" class="col-lg-4 control-label">HTML del pie</label>
-										<div class="col-lg-8">
-											<textarea class="form-control" rows="3" name="pie" id="input3"></textarea>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-lg-offset-4 col-lg-10">
-											<button class="btn btn-primary">Guardar cambios</button>
-											<button class="btn btn-default">Cancelar</button>
-										</div>
-									</div>
-
-								</form>
-
-							</div>
-						</div>
-					</div>
-					<!-- /Basic forms -->
+<div class="col-lg-7">
+    <div class="module module-blue">
+        <div class="module-header"><h4>Configuración básica</h4></div>
+        <div class="module-content">
+            
+            <form action="" class="form-horizontal" method="POST">
+                <div class="form-group">
+                    <div class="col-lg-offset-4 col-lg-8">
+                        <img width="100%" src="<?php echo CABECERA; ?>"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="input1" class="col-lg-4 control-label">Url de la cabecera</label>
+                    <div class="col-lg-8">
+                        <input type="url" class="form-control" id="input1" name="cabecera" value="<?php echo CABECERA ;?>" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="input2" class="col-lg-4 control-label">HTML del pie</label>
+                    <div class="col-lg-8">
+                        <textarea class="form-control" rows="3" name="pie" id="input3"><?php echo PIE ;?></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-4 col-lg-10">
+                        <button class="btn btn-primary">Guardar cambios</button>
+                        <button class="btn btn-default" name="cancel">Cancelar</button>
+                    </div>
+                </div>
+                
+            </form>
+            
+        </div>
+    </div>
+</div>
+<!-- /Basic forms -->
 
