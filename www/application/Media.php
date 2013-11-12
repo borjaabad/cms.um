@@ -18,7 +18,7 @@ class Media{
 		//JS de cada componente
 			if($this->js = Component::getJs()){
 				foreach ($this->js as $js){
-                                       
+	
 					//Ruta local del componente BASEURL/components/component/public/views/js
 					if($js->allowedviews){//NO VA EN TODAS LAS VISTAS, verifica que se pueda mostrar en esa vista ya sean file o url		
 						foreach($js->allowedviews->view as $view){

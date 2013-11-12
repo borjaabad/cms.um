@@ -1,0 +1,67 @@
+html, body{
+    padding:0px;
+    margin:0px;
+    height: 100%;
+}
+.web{
+    max-width: 1200px;
+    margin: auto;
+    height: 100%;
+}
+
+.TOPTOP{
+    height: 60px;
+}
+.CABECERATOP{
+    height: 40px;
+}
+.CABECERABOTTOM{
+    height: 40px;
+}
+
+.CUERPO{
+     max-width: 100%;
+     min-width: 90%;
+     float: left;
+}
+
+.CABECERA{
+   height: 90px;    
+}
+
+.RIGHTRIGHT{
+    width: 10%;
+    float:right;
+    height: 500px;
+}
+
+.blanco{
+      background: white;
+}
+.azul{
+    background: #0077b3;
+}
+
+.rojo{
+    background: #D83526;
+}
+
+.verde{
+    background: #398439;
+}
+
+.naranja{
+    background: #F4AB51;
+}
+
+.gris{
+    background: #CCC;
+}
+
+.marron{
+    background: #962329;
+}
+
+.amarillo{
+    background: #ff0;
+}

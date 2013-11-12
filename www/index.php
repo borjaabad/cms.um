@@ -1,43 +1,56 @@
-<table id="visor_estructura" class="table-responsive">
-    <tr>
-        <td id="MSCFC" colspan="5" class="m">TOP TOP</td>
-    </tr>
-    <tr>
-        <td id="MSC" colspan="4" class="m">TOP</td>		
-        <td id="MDFC" rowspan="10" class="m">RIGHT RIGHT</td>
-    </tr>
-    <tr>
-        <td id="C" colspan="4" style="color:#ce4724;border:1px solid #ce4724;">Cabecera <span id="MDC" class="m" style="color:white"> CENTER IN </span></td>
-    </tr>
-    <tr>
-        <td id="MBC" colspan="4" class="m">TOP BOTTOM</td>
-    </tr>
-    <tr>
-        <td id="MVI" rowspan="6" class="m">LEFT</td>
-        <td id="MSN" colspan="2" class="m"><?php Noticias::portadaPrincipales(); ?></td>
-        <td id="MVD" rowspan="6" class="m"><?php Menu::secciones();?></td>
-    </tr>
-    <tr>
-        <td id="NP" colspan="2"></td>
-    </tr>
-    <tr>
-        <td id="MSNC" class="m"><?php Noticias::portadaIzquierda(); ?></td>
-        <td id="MTC" class="m"><?php Noticias::portadaDerecha(); ?></td>
-    </tr>
-    <tr>
-        <td id="NC"></td>
-        <td id="TC" rowspan="2"></td>
-    </tr>
-    <tr>
-        <td id="MFIN1" class="m">LEFT BOTTOM</td>
-    </tr>
-    <tr>
-        <td id="MFIN2" class="m" colspan="2"><?php Publicidad::banner('ford'); ?></td>
-    </tr>
-    <tr>
-        <td id="MFIN3" class="m" colspan="4">BOTTOM</td>
-    </tr>
-    <tr>
-        <td id="C" colspan="5" style="color:#ce4724; border:1px solid #ce4724;">Pie</td>
-    </tr>                    
-</table>
+<?php
+
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', realpath(dirname(__FILE__)) . DS);
+define('APP_PATH', ROOT . 'application' . DS);
+
+
+//Aplicación siempre cargada
+require_once APP_PATH . 'Config.php';
+require_once APP_PATH . 'Module.php';
+require_once APP_PATH . 'Request.php';
+require_once APP_PATH . 'Bootstrap.php';
+require_once APP_PATH . 'Controller.php';
+require_once APP_PATH . 'Database.php';
+require_once APP_PATH . 'Model.php';
+require_once APP_PATH . 'View.php';
+require_once APP_PATH . 'Form.php';
+require_once APP_PATH . 'Media.php';
+require_once APP_PATH . 'Alertify.php';
+
+
+try{ 
+	$request = new Request();
+	//$components = Component::loadComponent($request);
+        
+        ob_start();
+
+        $peticion = new Request();
+        //Selector de página
+        switch($peticion->paginaModulo($peticion)){
+            case 'pagina':
+                $config = new Config();
+                $config->getBasicConf();
+                $config->getInfoyseoConf();
+                Bootstrap::run($peticion);
+                break;
+            case 'modulo';
+                echo 'hopaaaaaaaaaaaaa';
+                break;
+        }
+       
+        $pagina = ob_get_contents();
+
+        ob_end_clean();
+        echo $pagina.$pagina.$pagina.$pagina;
+        
+        exit;
+        
+}
+catch (Exception $e){
+	$e->getMessage();	
+}
+
+
+?>
+
