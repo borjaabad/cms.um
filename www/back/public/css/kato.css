@@ -28,12 +28,12 @@ h1,h2,h3,h4,h5,h6 {
 
 
 a {
-	color: #2b3035
+	color: #c02c34;
 }
 
-a:hover,a:active,a:focus {
+a:hover, a:active, a:focus {
 	text-decoration: none;
-	color: red
+	color: #CCC;
 }
 
 .enlaceNoticia{
@@ -68,13 +68,7 @@ a:hover,a:active,a:focus {
 .enlaceComponente{
 color:white;
 }
-a .enlaceComponente{
-	color:white;
-}
 
-a:hover,a:active,a:focus .enlaceComponente{
-	color:white;
-}
 
 .selected{
 	background: #2B3035;

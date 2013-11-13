@@ -8,16 +8,23 @@ class indexController extends Controller{
 		Session::control();
 	}
             
-	//configuracion/paginas
+	//paginas
 	public function index(){
-            
             $paginas = $this->loadModel('pagina');
             $this->_view->_paginas = $paginas->getPaginas();
             $this->_view->renderizar('listado',true);
             exit;
 	}
-            
-        //configuracion/paginas/agregar
+
+        //paginas
+	public function listado(){
+            $paginas = $this->loadModel('pagina');
+            $this->_view->_paginas = $paginas->getPaginas();
+            $this->_view->renderizar('listado',true);
+            exit;
+	}
+        
+        //paginas/agregar
 	public function agregar(){
             
             if($_POST){
@@ -31,11 +38,11 @@ class indexController extends Controller{
                     Alertify::add('Hubo un problema','error');
             }
             }
-            header('LOCATION: '.BASE_URL_COM.'paginas');
+            header('LOCATION: '.BASE_URL_COM);
             exit;
 	}
             
-        //configuracion/paginas/eliminar
+        //paginas/eliminar
 	public function eliminar(){
 		if(isset($_POST['paginas'])) {
 			$paginas = $_POST['paginas'];
@@ -48,7 +55,7 @@ class indexController extends Controller{
 		}else
 			Alertify::add('No seleccionó ninguna página.','log');
                             
-		header('location: '.BASE_URL_COM.'paginas');
+		header('location: '.BASE_URL_COM);
                 exit;
 	}
 }

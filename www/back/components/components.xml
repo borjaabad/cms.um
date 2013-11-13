@@ -46,26 +46,12 @@
             <enabled>true</enabled>
             <media>
                 <js>
-                    <file>query.min.js</file>
-                    <file>jquery.ui.touch-punch.min.js</file>
-                    <file>jquery-ui.min.js</file>
-                    <file>scripts.min.js</file>
-                    <file>jquery.htmlClean.js</file>
-                    <file>query.min.js</file>
-                    <file>query.min.js</file>
+                    <file>paginas.js</file>
                     <allowedviews>
                         <view>maquetacion</view>
                     </allowedviews>
                 </js>
-                <css>
-                    <file>bootstrap.min.css</file>
-                    <file>layoutit.css</file>
-                    <allowedviews>
-                        <view>maquetacion</view>
-                    </allowedviews>
-                </css>                               
-            </media>
-        </component>	                
+            </media>        </component>	                
         <component>
             <name>configuracion</name>
             <displayName>Config.</displayName>

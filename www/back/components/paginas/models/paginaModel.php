@@ -28,11 +28,28 @@ class paginaModel extends Model{
 		}
 	}
         
+        public function getPagina($id){
+            
+           	try {	
+                        $paginas = new paginaModel();
+			$query = "SELECT name FROM paginas WHERE id = '" . $this->validaInt($id). "'";
+                        $paginas = $paginas->_db->query($query) or die(mysql_error().mysql_errno());
+                        $pagina = $paginas->fetch();
+                            
+                        return $pagina;
+		}
+		catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+        }
+
+
         public function savePagina(){
             
 		try {
-			$conn = $this->_db->prepare("INSERT INTO paginas (titulo, descripcion) VALUES (?, ?)") or die(mysql_error().mysql_errno());
-                        if($conn->execute(array($this->getTexto('titulo'),$this->getTexto('descripcion')))){
+			$conn = $this->_db->prepare("INSERT INTO paginas (titulo, descripcion, name) VALUES (?, ?, ?)") or die(mysql_error().mysql_errno());
+                        if($conn->execute(array($this->getTexto('titulo'),$this->getTexto('descripcion'),  Controller::normalizaStringToUrlFilesystemMatch($this->getTexto('titulo'))))){
                                     return true;
                         }
                             

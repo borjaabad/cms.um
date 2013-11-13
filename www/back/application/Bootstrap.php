@@ -17,6 +17,7 @@ class Bootstrap{
 		echo "metodo: . ".$metodo."<br>"; 
 		*/
 		
+		
 		if(is_readable($rutaControlador)){
 			
 			require_once $rutaControlador;

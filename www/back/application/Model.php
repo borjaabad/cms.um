@@ -46,7 +46,7 @@ class Model
 	}
 	protected function validaInt($int){
 		filter_input(INPUT_POST, $int, FILTER_VALIDATE_INT);
-		return $int;
+		return (INT) $int;
 	}
 }
 
