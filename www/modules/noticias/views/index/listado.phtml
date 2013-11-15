@@ -1,0 +1,88 @@
+<!-- Site header -->
+			<header class="main-header">
+				
+				<!-- Page title -->
+				<h3>
+					<a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
+					Listado de noticias
+				</h3>
+				
+				<!-- Profile dropdown -->
+				<span class="user-profile">
+					<a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
+						<span>Cerrar sesión</span>
+					</a>
+				</span>
+
+			</header>
+			<!-- /Site header -->
+			
+			<!-- Main Content -->
+			<section class="main-content padding">
+				<div class="row">
+					<div class="col-lg-3">
+					<?php 	
+						echo '
+							<select name="seccion" id="secciones" class="form-control">';
+						echo '
+								<option value="0" >Todas las secciones</option>';
+						foreach ($this->_secciones as $seccion){
+							echo '
+								<option value="'.BASE_URL_COM.'listado/'.$seccion['id'].'">'.$seccion['seccion'].'</option>';
+						}		
+						echo '</select>';
+						?>
+							
+					</div>
+				</div>
+				<div class="row">
+					
+					<!-- Full width table -->
+					<div class="col-lg-12">
+						<form name="noticiasForm" method="post" action="<?php echo BASE_URL_COM.'eliminar'; ?>">
+							<div class="module no-padding">
+								<div class="module-content table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th></th>
+												<th>ID</th>
+												<th>Título</th>
+												<th>Orden</th>
+												<th>Firmante</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php if($this->_noticias){
+												foreach ($this->_noticias as $noticia){
+													echo '<tr>';
+													echo '<td style="width:15px;"><input name="noticias[]" type="checkbox" id="checkbox[]" value="'.$noticia['id'].'"></td>';
+													echo '<td style="width:25px;">'.$noticia['id'].'</td>';
+													echo '<td>
+															<a class="enlaceNoticia" href="'.BASE_URL_COM.'editar/'.$noticia['id'].'">
+																'.$noticia['titulo'].'
+															</a>
+														  </td>';
+													echo '<td>'.$noticia['orden'].'</td>';
+													echo '<td>'.$noticia['nombre'].'</td>';
+													echo '</tr>';
+												}
+											}?>
+											
+										</tbody>
+									</table>
+									
+								</div>
+							</div>
+							<?php if($this->_noticias){?> 
+								<button type="submit" class="btn btn-danger">Eliminar noticias seleccionadas</button>
+							<?php } ?>
+						</form>
+					</div>
+					<!-- /Full width table -->
+				</div>
+			</section>
+			<!-- /Main Content -->
+
+		</div>
+		<!-- /Content area -->
