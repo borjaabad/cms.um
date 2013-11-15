@@ -1,6 +1,16 @@
-function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-  }
+
+   function resizeIframe(){
+       
+       $('iframe').height(document.body.scrollHeight - 5 + 'px');
+       
+       window.onresize = function(event) {
+            $('iframe').height(document.body.scrollHeight -5 + 'px');
+        }
+   }
+   
+   
+
+
 
         
      

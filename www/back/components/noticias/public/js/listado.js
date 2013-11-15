@@ -1,20 +1,20 @@
 $(document).ready(function() {
 	
-	$('#secciones').change(function() {
+	$('#seccionesSelect').change(function() {
 		if($(this).val())
 			window.location = $(this).val();
 	});
 	
 		if(checkValueSelect(window.location.href))
-			$('#secciones').val(window.location.href);
+			$('#seccionesSelect').val(window.location.href);
 		else
-			$('#secciones').val(0);
+			$('#seccionesSelect').val(0);
 
 });
 
 function checkValueSelect(secc){
 	
-	for(var i = 0, opts = document.getElementById('secciones').options; i < opts.length; ++i){
+	for(var i = 0, opts = document.getElementById('seccionesSelect').options; i < opts.length; ++i){
 	   if( opts[i].value == secc )
 	     return true;
 	}

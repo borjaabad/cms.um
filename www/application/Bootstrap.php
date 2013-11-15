@@ -5,19 +5,24 @@ class Bootstrap {
     public static function run(Request $peticion) {
          
         //Request original: /controlador/metodo/argunmentos
-        
-        
         //modules/controlador/metodo/arg/s
-        if ($peticion->getControlador() == 'modules') {
-            $controller = $peticion->getMetodo();
+        if ($peticion->getControlador() == 'modulo') {
+            $modulo = $peticion->getMetodo();
+            var_dump($peticion->getArgs());exit;
+            foreach ($peticion->getArgs() as $arg){
+                echo  $arg ;              
+            }
+            echo $modulo; exit;
            return 'modulo';
         } 
         //Se trata de una página del sistema
         else {
+             
             $pagina = $peticion->getControlador();
-            if($pagina=='index') $pagina='seccion';
+            
+            if($pagina=='index') $pagina='portada';
             include_once ROOT.$pagina.'.php';
-            return 'pagina';
+            exit;
         }
         
        

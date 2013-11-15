@@ -73,14 +73,14 @@
 													echo '<td style="width:15px;"><input name="paginas[]" type="checkbox" id="checkbox[]" value="'.$pagina['id'].'"></td>';                                                 
 													echo '<td style="width:25px;">'.$pagina['id'].'</td>';
 													echo '<td>
-                                                                                                                <a href="'.BASE_URL_COM.'maquetacion/'.$pagina['id'].'/'.$pagina['name'].'">'.
+                                                                                                                <a href="'.BASE_URL_COM.'maquetacion/'.$pagina['id'].'/'.$pagina['enlace'].'">'.
                                                                                                                     $pagina['titulo']
                                                                                                                 .'</a>
                                                                                                                 </td>';
 													echo '<td>'.$pagina['descripcion'].'</td>';
 													echo '<td style="white-space: nowrap;">
-                                                                                                                <a href="'.URLWWW.$pagina['name'].'">/'.
-                                                                                                                    $pagina['name']
+                                                                                                                <a target="_blank" href="'.URLWWW.$pagina['enlace'].'">/'.
+                                                                                                                    $pagina['enlace']
                                                                                                                 .'</a>
                                                                                                               </td>';
 													echo '</tr>';

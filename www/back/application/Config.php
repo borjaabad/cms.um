@@ -1,7 +1,7 @@
 <?php 
 
-define('BASE_URL','http://www.borjaabad.com/back/');
-define('URLWWW','http://www.borjaabad.com/');
+define('BASE_URL','http://cms.um/back/');
+define('URLWWW','http://cms.um/');
 
 define('DEFAULT_CONTROLLER','index');
 define('DEFAULT_COMPONENT','default');

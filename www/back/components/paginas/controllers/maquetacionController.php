@@ -28,8 +28,8 @@ class maquetacionController extends Controller{
             //Lo que hago es traer la página limpia con el html final en el post con jquery. 
             //Además traigo la página con todos los bloques de edición y metadatos para 
             //poder cargar las páginas después con el editor. (getoriginal()).
-            file_put_contents(ROOT.'..'.DS.$name['name'].'.php', $pagina);
-            file_put_contents(ROOT.'..'.DS.'original'.DS.$name['name'].'.php', $original);
+            file_put_contents(ROOT.'..'.DS.$name['enlace'].'.php', $pagina);
+            file_put_contents(ROOT.'..'.DS.'original'.DS.$name['enlace'].'.php', $original);
             
             
             //$this->_view->renderizar('maquetacion',true);
@@ -43,7 +43,7 @@ class maquetacionController extends Controller{
             
             $name = $pag->getPagina($id);
             
-            echo  @file_get_contents(ROOT.'..'.DS.'original'.DS.$name['name'].'.php');
+            echo  @file_get_contents(ROOT.'..'.DS.'original'.DS.$name['enlace'].'.php');
 
             exit;
 	}   

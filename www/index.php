@@ -1,6 +1,4 @@
 <?php
-header('Location: back/login');
-exit;
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', realpath(dirname(__FILE__)) . DS);
 define('APP_PATH', ROOT . 'application' . DS);
@@ -22,11 +20,11 @@ require_once APP_PATH . 'Alertify.php';
 
 try{ 
 	$request = new Request();
-	//$components = Component::loadComponent($request);
         
         ob_start();
 
         $peticion = new Request();
+        
         //Selector de página
         switch($peticion->paginaModulo($peticion)){
             case 'pagina':
@@ -43,8 +41,9 @@ try{
         $pagina = ob_get_contents();
 
         ob_end_clean();
-        echo $pagina.$pagina.$pagina.$pagina;
-        
+        include_once ROOT.'views'.DS.'header.php';
+            echo $pagina;
+        include_once ROOT.'views'.DS.'footer.php';
         exit;
         
 }
