@@ -1,0 +1,26 @@
+<form method="post" action="<?php echo BASE_URL.'secciones/agregar'; ?>">
+Agregar una nueva sección:
+	<textarea rows="1"  name="seccion" style="width:50%;"></textarea>	
+	<p></p>
+	<?php Form::button('Agregar','positive','add'); ?>
+	<?php Form::button('Eliminar noticias seleccionadas','negative','delete'); ?>
+	<p></p>
+</form>
+<form method="post" action="<?php echo BASE_URL.'secciones/eliminar'; ?>">
+<table>
+	<tr>
+	    <th></th>
+		<th>ID</th>
+		<th>SECCIÓN</th>
+	</tr>
+		<?php if($this->_secciones){
+			foreach ($this->_secciones as $seccion){
+				echo '<tr>';
+				echo '<td style="width:15px;"><input name="secciones[]" type="checkbox" id="checkbox[]" value="'.$seccion['id'].'"></td>';
+				echo '<td style="width:25px;">'.$seccion['id'].'</td>';
+				echo '<td>'.$seccion['seccion'].'</td>';
+				echo '</tr>';
+			}
+		}?>
+</table>
+</form>
