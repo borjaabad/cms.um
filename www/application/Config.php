@@ -19,6 +19,8 @@ define('DB_PASS', 'contra');
 define('DB_NAME', 'cms_um');
 define('DB_CHAR', 'utf8');
 
+$modulo;
+$controlador;
 
 Class Config{
     

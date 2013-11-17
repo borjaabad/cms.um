@@ -5,7 +5,6 @@ class firmantesController extends Controller{
 	
 	public function __construct(){
 		parent::__construct();
-		Session::control();
 		//$this->_view->setMenu('firmantes');
 	}
 	

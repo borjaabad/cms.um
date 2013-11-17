@@ -1,3 +1,24 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['autenticado'])) {
+        session_destroy();
+        header('Location: /back');
+    }
+    $modulos = $_GET['o'];
+    $modulosHTML = '';
+    $XML = new SimpleXMLElement($modulos);
+    foreach ($XML->module as $modulo) {
+        $modulosHTML .= '
+                    <div class="box box-element">
+                        <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
+                        <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
+                        <div class="preview">' . $modulo->displayname . '</div>
+                        <div class="view">
+                            [['.$modulo->parent.'::'.$modulo->controller.'::'.$modulo->method.']]
+                        </div>
+                    </div>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +27,7 @@
         <meta name="description" content="CMS.UM">
         <meta name="author" content="Borja Abad">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <script type="text/javascript" src="http://cms.um/back/public/js/alertify.min.js"></script>
         <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/jquery.min.js"></script>
         <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/jquery.ui.touch-punch.min.js"></script>
@@ -18,11 +39,11 @@
         <link rel="StyleSheet" href="http://cms.um/back/components/paginas/public/css/layoutit.css" type="text/css">
         <link rel="StyleSheet" href="http://cms.um/back/public/css/alertify.core.css" type="text/css">
         <link rel="StyleSheet" href="http://cms.um/back/public/css/alertify.default.css" id="toggleCSS" type="text/css">
-        
-        
+
+
     </head>
-    
-    
+
+
     <body class="edit">
         <div class="navbar navbar-inverse navbar-fixed-top navbar-layoutit">
             <div class="navbar-header">
@@ -33,11 +54,11 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse">
-                
+
                 <ul class="nav pull-right">
                     <li>
-                        
-                        
+
+
                     </li>
                 </ul>
                 <ul class="nav" id="menu-layoutit">
@@ -50,9 +71,13 @@
                             <button type="button" id="devpreview"     class="btn btn-xs btn-primary" >Desarrollo</button>
                             <button type="button" id="sourcepreview"  class="btn btn-xs btn-primary" >Prevista</button>
                         </div>
-                        
+
                         <div class="btn-group" style="padding-left:1em">							
                             <button class="btn btn-xs btn-primary" href="#clear" id="clear" >Vaciar página</button>
+                        </div>
+
+                        <div class="btn-group" style="padding-left:1em">							
+                            <button class="btn btn-xs btn-primary" href="#abrir" id="abrir" >Abrir página</button>
                         </div>
                         
                         <div class="btn-group" style="padding-left:1em">							
@@ -62,12 +87,12 @@
                 </ul>
             </div><!--/.navbar-collapse -->
         </div><!--/.navbar-fixed-top -->
-        
+
         <div class="container">
             <div class="row">
                 <div class="">
                     <div class="sidebar-nav">
-                        
+
                         <ul class="nav nav-list accordion-group">
                             <li class="nav-header">
                                 Maquetación
@@ -94,9 +119,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="lyrow">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -108,9 +133,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="lyrow">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -123,9 +148,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
+
+
                                 <div class="lyrow">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -138,17 +163,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
+
+
                             </li>
                         </ul>
-                        
-                        
+
+
                         <ul class="nav nav-list accordion-group">
                             <li class="nav-header">
                                 Estáticos
                             </li>
-                            <li class="boxes" id="elmBase">
+                            <li class="boxes" id="elmEstaticos">
                                 <div class="box box-element">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -183,7 +208,7 @@
                                 <div class="box box-element">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
-                                    
+
                                     <div class="preview">Párrafo</div>
                                     <div class="view">
                                         <p contenteditable="true">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
@@ -433,7 +458,7 @@
                                                 <li class="" ><a href="#" rel="btn-xs">Mini</a></li>
                                             </ul>
                                         </span>
-                                        
+
                                         <a class="btn btn-xs btn-default" href="#" rel="btn-block">Block</a>
                                         <a class="btn btn-xs btn-default" href="#" rel="active">Active</a>
                                         <a class="btn btn-xs btn-default" href="#" rel="disabled">Disabled</a>
@@ -512,7 +537,7 @@
                                                 <li class="" ><a href="#" rel="panel-danger">Danger</a></li>
                                             </ul>
                                         </span>
-                                        
+
                                     </span>
                                     <div class="preview">Lista</div>
                                     <div class="view">
@@ -542,7 +567,7 @@
                                                 <li class="" ><a href="#" rel="alert-danger">Danger</a></li>
                                             </ul>
                                         </span>
-                                        
+
                                     </span>
                                     <div class="preview">Alertas</div>
                                     <div class="view">
@@ -555,25 +580,35 @@
                                 </div>
                             </li>
                         </ul>
+                        <ul class="nav nav-list accordion-group">
+                            <li class="nav-header">
+                                Dinámicos
+                            </li>
+                            <li class="boxes" id="elmDinamicos">
 
+                                <?php
+                               echo $modulosHTML;
+                                ?>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <!--/span-->
                 <div class="demo">
-                    
+
                 </div>
                 <!--/span-->
                 <div id="download-layout"><div class="container"></div></div>
             </div>
             <!--/row-->
-            
+
             <script type="text/javascript">
                 $(document).ready(function() {
 
                 });
             </script>
         </div><!--/.fluid-container-->
-        
+
         <script type="text/javascript">
             function saveLayout() {
                 //	$.ajax({  
@@ -654,11 +689,11 @@
 
 
         </script>
-        
+
         <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true"></div>
-        
+
     </body>
 </html>
 

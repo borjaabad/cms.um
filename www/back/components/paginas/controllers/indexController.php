@@ -16,8 +16,9 @@ class indexController extends Controller{
             exit;
 	}
 
-        //paginas
+        //paginas/listado
 	public function listado(){
+            
             $paginas = $this->loadModel('pagina');
             $this->_view->_paginas = $paginas->getPaginas();
             $this->_view->renderizar('listado',true);

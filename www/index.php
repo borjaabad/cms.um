@@ -16,35 +16,31 @@ require_once APP_PATH . 'View.php';
 require_once APP_PATH . 'Form.php';
 require_once APP_PATH . 'Media.php';
 require_once APP_PATH . 'Alertify.php';
+require_once APP_PATH . 'Pagina.php';
+require_once APP_PATH . 'Modulo.php';
 
 
-try{ 
-	$request = new Request();
-        
+try{        
         ob_start();
 
         $peticion = new Request();
-        
+                
         //Selector de página
-        switch($peticion->paginaModulo($peticion)){
-            case 'pagina':
-                $config = new Config();
-                $config->getBasicConf();
-                $config->getInfoyseoConf();
-                Bootstrap::run($peticion);
-                break;
-            case 'modulo';
-                echo 'hopaaaaaaaaaaaaa';
-                break;
-        }
-       
-        $pagina = ob_get_contents();
+        if($peticion->paginaModulo($peticion)=='pagina')
+            Bootstrap::cargaPagina(PAGINA);
+        else
+            Bootstrap::run($peticion);
+             
+          
+          
+      //  $buffer = ob_get_contents();
 
-        ob_end_clean();
-        include_once ROOT.'views'.DS.'header.php';
-            echo $pagina;
-        include_once ROOT.'views'.DS.'footer.php';
-        exit;
+        //ob_end_clean();
+       // if(R)
+      //  include_once ROOT.'views'.DS.'header.php';
+          //  echo $pagina;
+      //  include_once ROOT.'views'.DS.'footer.php';
+       // exit;
         
 }
 catch (Exception $e){

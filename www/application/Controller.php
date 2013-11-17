@@ -10,16 +10,13 @@ abstract class Controller
 	abstract public function index();
 
 	//Carga un modelo por defecto del componente propio
-	protected function loadModel($modelo,$flag=false)
+	protected function loadModel($modelo)
 	{	
 			$modelo = $modelo . 'Model';
-				
-			if(!$flag)
-				$rutaModelo = ROOT_COM . 'models' . DS . $modelo . '.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
-			else 
-				$rutaModelo = ROOT . 'models' . DS . $modelo . '.php';  //MODELOS BASE Y COMUNES A TODA LA APP
-		
-			if(is_readable($rutaModelo)){
+			Global $modulo;
+                        
+			$rutaModelo = ROOT .'modules'.DS.$modulo.DS .'models' . DS . $modelo.'.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
+                        if(is_readable($rutaModelo)){
 				
 				require_once $rutaModelo;
 	
@@ -32,11 +29,11 @@ abstract class Controller
 			}
 	}
 	
-	protected function loadModelFromOtherComponent($model,$component){
+	protected function loadModelFromOtherModule($model,$module){
 		
 		$model = $model . 'Model';
 		
-		$rutaModelo = ROOT . 'components' . DS . $component . DS . 'models' . DS .$model. '.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
+		$rutaModelo = ROOT . 'modules' . DS . $module . DS . 'models' . DS .$model. '.php'; //MODELOS DEL MÓDULO QUE SE ESTÁ EJECUTANDO
 		
 		if(is_readable($rutaModelo)){
 			

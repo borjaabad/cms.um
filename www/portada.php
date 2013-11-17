@@ -5,7 +5,7 @@
 				<h1>
 					Portada
 				</h1>
-			</div>
+			</div> [[noticias::index::getnoticias]]
 		</div>
 	</div>
 </div>

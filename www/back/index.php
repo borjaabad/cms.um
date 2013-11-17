@@ -27,7 +27,9 @@ Session::init();
 try{ 
 	$request = new Request();
 	$components = Component::loadComponent($request);
+        
 	Bootstrap::run($request);
+        echo 'hola';
 }
 catch (Exception $e){
 	$e->getMessage();	

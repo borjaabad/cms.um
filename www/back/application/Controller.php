@@ -19,13 +19,15 @@ abstract class Controller{
             $rutaModelo = ROOT_COM . 'models' . DS . $modelo . '.php'; //MODELOS DEL COMPONENTE QUE SE ESTÁ EJECUTANDO
         else
             $rutaModelo = ROOT . 'models' . DS . $modelo . '.php';  //MODELOS BASE Y COMUNES A TODA LA APP
-                
+
         if(is_readable($rutaModelo)){
+            
             require_once $rutaModelo;
             $modelo = new $modelo;
             return $modelo;
         }
         else {
+            
             throw new Exception('Error de modelo');
         }
     }
@@ -72,7 +74,7 @@ abstract class Controller{
         return 0;
     }
         
-    public function esEntero($entero){
+    public function validaInt($entero){
         if(isset($entero) &&!empty($entero)){
             $entero = filter_input($entero, FILTER_VALIDATE_INT);
         return $entero;
@@ -80,7 +82,7 @@ abstract class Controller{
         return 0;
     }
     
-    public function getCadena($cadena){
+    public function validaChar($cadena){
         if(isset($cadena) &&!empty($cadena)){
             $cadena = htmlspecialchars($cadena, ENT_QUOTES);
             return $cadena;

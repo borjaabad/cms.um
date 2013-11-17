@@ -1,7 +1,16 @@
+<?php
+$modulos = $this->_modulos;
+$modulos = $modulos->asXML();
 
+$plantilla = BASE_URL.'components/paginas/views/maquetacion/layoutit.php?o='.$modulos;
 
-<iframe name="Stack" src="<?php echo BASE_URL; ?>components/paginas/views/maquetacion/layoutit.php" 
-        frameborder="0" scrolling="yes" id="layoutit" width="100%" onload='javascript:resizeIframe();' />
+?>
 
-
-
+<iframe name="Stack" 
+        frameborder="0" 
+        scrolling="yes" 
+        id="layoutit" 
+        width="100%" 
+        onload='javascript:resizeIframe();'
+        src="<?php echo $plantilla; ?>" 
+        />

@@ -1,97 +1,36 @@
-<!-- Site header -->
-			<header class="main-header">
-				
-				<!-- Page title -->
-				<h3>
-					<a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
-					Listado de firmantes
-				</h3>
-				
-				<!-- Profile dropdown -->
-				<span class="user-profile">
-					<a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
-						<span>Cerrar sesión</span>
-					</a>
-				</span>
 
-			</header>
-			<!-- /Site header -->
-			
-			<!-- Main Content -->
-			<section class="main-content padding">
-				<div class="row">
-				<!-- Basic forms -->
-					<div class="col-lg-4">
-						<div class="module">
-							<div class="module-header"></div>
-							<div class="module-content">
-								<form name="firmanteForm2" method="post" action="<?php echo BASE_URL_COM.'firmantes/agregar'; ?>" class="form-horizontal">
-									<div class="form-group">
-										<label for="input1" class="col-lg-2 control-label">Nombre</label>
-										<div class="col-lg-9">
-											<input type="text" class="form-control" name="firmante" placeholder="Nombre" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="input1" class="col-lg-2 control-label">Email</label>
-										<div class="col-lg-9">
-											<input type="email" class="form-control" name="email" placeholder="Email" />
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-lg-offset-2 col-lg-10">
-											<button type="submit" class="btn btn-success">Agregar nuevo firmante</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- /Basic forms -->
-				</div>
-				<div class="row">
-					
-					<!-- Full width table -->
-					<div class="col-lg-12">
-						<form name="firmantesForm" method="post" action="<?php echo BASE_URL_COM.'firmantes/eliminar'; ?>">
-							<div class="module no-padding">
-								<div class="module-content table-responsive">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th></th>
-												<th>ID</th>
-												<th>Nombre</th>
-												<th>Email</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php if($this->_firmantes){
-												foreach ($this->_firmantes as $firmante){
-													echo '<tr>';
-													echo '<td style="width:15px;"><input name="firmantes[]" type="checkbox" id="checkbox[]" value="'.$firmante['id'].'"></td>';
-													echo '<td style="width:25px;">'.$firmante['id'].'</td>';
-													echo '<td>'.$firmante['nombre'].'</td>';
-													echo '<td>'.$firmante['email'].'</td>';
-													echo '</tr>';
-												}
-											}?>
-										</tbody>
-									</table>
-									
-								</div>
-							</div>
-							<?php if($this->_firmantes){?> 
-								<button type="submit" class="btn btn-danger">Eliminar firmantes seleccionados</button>
-							<?php } ?>
-						</form>
-					</div>
-					<!-- /Full width table -->
-				</div>
-			</section>
-			<!-- /Main Content -->
 
-		</div>
-		<!-- /Content area -->
+<div class="row">
+    <!-- Full width table -->
+    <div class="col-lg-12">
+        <div class="module no-padding">
+            <div class="module-content table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($this->_firmantes) {
+                            foreach ($this->_firmantes as $firmante) {
+                                echo '<tr>';
+                                echo '<td>' . $firmante['nombre'] . '</td>';
+                                echo '<td>' . $firmante['email'] . '</td>';
+                                echo '</tr>';
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /Full width table -->
+</div>
 
 
