@@ -65,3 +65,52 @@ html, body{
 .amarillo{
     background: #ff0;
 }
+
+.noticia.titulo{
+    font-size: 1.5em;
+    padding: 5px;
+    
+}
+.noticia.entradilla{
+    font-size: 1.2em;
+    padding: 5px;
+    padding-bottom: 25px;
+}
+
+.otrasnoticias .seccion{
+    padding-top: 20px;
+}
+
+.otrasnoticias .titulo{
+    color:#59636d;
+    font-size: 1.3em;
+    padding: 5px;
+    padding-left: 25px;
+
+}
+
+.noticia.entradilla{
+    color:#59636d;
+    font-size: 1.1em;
+
+}
+
+
+.noticia.img{
+    margin: 50px;
+    padding:50px;
+}
+
+.noticia.texto{
+    color:#59636d;
+    font-size: 1.1em;
+    padding-left: 150px;
+
+}
+
+.row.otrasnoticias{
+    background: white;
+    padding-top: 50px;
+    
+}
+

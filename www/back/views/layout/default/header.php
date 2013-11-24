@@ -24,4 +24,3 @@ header('Content-Type: text/html; charset=utf8');
 			
 			?>
 		<?php //include 'top_bar.php';?>
-			

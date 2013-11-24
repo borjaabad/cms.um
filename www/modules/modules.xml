@@ -5,15 +5,64 @@
             <parent>noticias</parent>
             <enabled>true</enabled>
             <controller>index</controller>
-            <method>ultimahora</method>
-            <displayname>Última hora</displayname>            
+            <method>noticia</method>
+            <displayname>Noticia</displayname>            
+        </module>
+        <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>principalportada</method>
+            <displayname>Principal portada</displayname>            
         </module>		
         <module>
             <parent>noticias</parent>
             <enabled>true</enabled>
-            <controller>firmantes</controller>
-            <method>index</method>
-            <displayname>Firmantes</displayname>            
+            <controller>index</controller>
+            <method>comunportada</method>
+            <displayname>Común portada</displayname>            
+        </module>        
+        <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>terceraportada</method>
+            <displayname>Tercera portada</displayname>            
+        </module>
+        <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>otrasportada</method>
+            <displayname>Otras portada</displayname>            
+        </module>
+        <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>principalseccion</method>
+            <displayname>Principal sección</displayname>            
+        </module>
+         <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>comunseccion</method>
+            <displayname>Común sección</displayname>            
+        </module>        
+        <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>terceraseccion</method>
+            <displayname>Tercera sección</displayname>            
+        </module>
+        <module>
+            <parent>noticias</parent>
+            <enabled>true</enabled>
+            <controller>index</controller>
+            <method>otrasseccion</method>
+            <displayname>Otras sección</displayname>            
         </module>
         <module>
             <parent>secciones</parent>

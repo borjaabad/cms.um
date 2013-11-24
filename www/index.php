@@ -22,7 +22,6 @@ require_once APP_PATH . 'Modulo.php';
 
 try{        
         ob_start();
-
         $peticion = new Request();
                 
         //Selector de página

@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/bootswatch.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/base.css">
 
   </head>
   <body>
@@ -47,4 +48,4 @@
         </div>
       </div>
     </div>
-    <div class="container">
+      <div class="container" style="padding-top: 80px;">

@@ -18,11 +18,11 @@ class Pagina{
     public function procesarPlantilla(){
         
         $plantilla = file_get_contents($this->rutaPlantilla);
-        
         //Ejemplo de lo que busca: [[noticias::index::ultimahora]]
         preg_match_all('/\[\[.*\]\]/i', $plantilla, $this->_modulos);
         $this->_modulos = $this->cargaModulos($this->_modulos[0]);
         
+
         //Una vez procesados los modulos reemplazamos las etiquetas
         // de la plantilla por la salida que produjo cada módulo
         if($this->_modulos = $this->procesaModulos($this->_modulos))

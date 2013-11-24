@@ -42,8 +42,19 @@ class Model
 			return $_POST[$clave];
 		}
 
-		return 0;
+		return '0';
 	}
+        function getDate ($date){
+         if(isset($_POST[$date]) && !empty($_POST[$date])){   
+            if ( function_exists('date_default_timezone_set') ) {
+                date_default_timezone_set('GMT');
+            }
+            if(strtotime($date) !== -1)
+                return $_POST[$date];
+         }
+         return false;
+        }
+        
 	protected function validaInt($int){
 		filter_input(INPUT_POST, $int, FILTER_VALIDATE_INT);
 		return (INT) $int;

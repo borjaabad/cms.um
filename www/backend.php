@@ -5,10 +5,18 @@
 				Backend
 			</h3>
 			<div class="row clearfix">
-				<div class="col-md-6 column">
+				<div class="col-md-4 column">
 					<h3>
 						Última hora
 					</h3> [[noticias::index::ultimahora]]
+				</div>
+				<div class="col-md-4 column">
+				</div>
+				<div class="col-md-4 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-6 column">
 				</div>
 				<div class="col-md-6 column">
 					<h3>

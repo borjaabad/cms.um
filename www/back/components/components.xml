@@ -26,6 +26,20 @@
                         <view>listado</view>
                     </allowedviews>
                 </js>
+                <js>
+                    <file>nueva.js</file>
+                    <file>jquery.tools.min.js</file>
+                    <file>bootstrap-wysiwyg.js</file>                    
+                    <allowedviews>
+                        <view>editor</view>
+					</allowedviews>
+                </js>				
+		<css>
+                    <file>calendar.css</file>
+                    <allowedviews>
+                        <view>editor</view>
+                    </allowedviews>
+                </css>				
             </media>
             <sqlprefix>not_</sqlprefix>
             <enabled>true</enabled>

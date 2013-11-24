@@ -36,6 +36,7 @@
 							</ul>
 						</div>
 						<div class="col-md-6 column">
+							[[noticias::index::ultimahora]]
 						</div>
 					</div>
 				</div>

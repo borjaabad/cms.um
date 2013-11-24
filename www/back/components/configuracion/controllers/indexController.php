@@ -62,7 +62,7 @@ class indexController extends Controller{
         //configuracion/enablecomponent/componente
 	public function enablecomponent($component){
 		if($component){
-			$component = $this->getCadena($component);
+			$component = $this->validaChar($component);
 			if(Component::enablecomponent($component))
 				echo 'ok';
 			else
@@ -75,7 +75,7 @@ class indexController extends Controller{
         //configuracion/disablecomponent/componente
 	public function disablecomponent($component){	
 		if($component){
-			$component = $this->getCadena($component);
+			$component = $this->validaChar($component);
 			if(Component::disablecomponent($component))
 				echo 'ok';
 			else

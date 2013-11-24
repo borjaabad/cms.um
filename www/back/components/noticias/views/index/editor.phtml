@@ -1,110 +1,150 @@
 <!-- Content area -->
-		<div id="content-wrapper">
-			<!-- Site header -->
-			<header class="main-header">
-				
-				<!-- Page title -->
-				<h3>
-					<a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
-					Nueva noticia
-				</h3>
-				<!-- Profile dropdown -->
-				<span class="user-profile">
-					<a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
-						<span>Cerrar sesión</span>
-					</a>
-				</span>
-			</header>
-			<!-- /Site header -->
-			
-			<!-- Main Content -->
-			<section class="main-content padding">
-				
-				<div class="row">
-					
-					<!-- Basic forms -->
-					<div class="col-lg-12">
-						<div class="module">
-							<div class="module-header"><h4></h4></div>
-							<div class="module-content">
-								<form method="post" action="<?php echo BASE_URL.'noticias/agregar'; ?>" class="form-horizontal" >						
-									<div class="form-group">
-										<div class="col-lg-12">
-											<div class="col-lg-offset-3 col-lg-3">
-												<div class="form-group">
-													<label for="select1" class="col-lg-4 control-label">Sección</label>
-													<div class="col-lg-8">
-														<?php 
-															Form::select($this->_secciones,'id','seccion','secciones','Sección','form-control');
-														?>
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-3">
-												<div class="form-group">
-													<label for="select1" class="col-lg-5 control-label">Firmantes</label>
-													<div class="col-lg-7">
-														<?php 
-															Form::select($this->_firmantes,'id','nombre','firmante','Firmante','form-control');
-														?>
-													</div>
-												</div>											
-											</div>
-											<div class="col-lg-3">
-												<label for="select1" class="col-lg-5 control-label">Orden</label>
-												<div class="col-lg-7">
-													<input type="number" class="form-control" value="0" name="orden"/>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="input1" class="col-lg-2 control-label">Título</label>
-										<div class="col-lg-10">
-											<textarea class="form-control" rows="2" name="titulo"></textarea>
-										</div>
-									</div>
+<div id="content-wrapper">
+    <!-- Site header -->
+    <header class="main-header">
+        
+        <!-- Page title -->
+        <h3>
+            <a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
+            <span id="nuevaNoticia"><?php echo $this->_noticia['titulo']; ?></span>
+        </h3>
+        <!-- Profile dropdown -->
+        <span class="user-profile">
+            <a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
+                <span>Cerrar sesión</span>
+            </a>
+        </span>
+    </header>
+    <!-- /Site header -->
+    
+    <!-- Main Content -->
+    <section class="main-content padding">
+        
+        <div class="row">
+            
+            <!-- Basic forms -->
+            <div class="col-lg-12">
+                <div class="module">
+                    <div class="module-header"><h4></h4></div>
+                    <div class="module-content">
+                        <?php if($this->_noticia['id']==0)//nueva noticia
+                                echo '<form method="post" action="'.BASE_URL.'noticias/agregar" class="form-horizontal" >';
+                              else
+                                echo '<form method="post" action="'.BASE_URL.'noticias/guardar" class="form-horizontal" >';
+                           ?>
 
-									<div class="form-group">
-										<label for="input2" class="col-lg-2 control-label">Subtítulo</label>
-										<div class="col-lg-10">
-											<textarea class="form-control" rows="2" name="subtitulo"></textarea>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label for="input3" class="col-lg-2 control-label">Entradilla</label>
-										<div class="col-lg-10">
-											<textarea class="form-control" rows="3" name="texto"></textarea>
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="input3" class="col-lg-2 control-label">Texto</label>
-										<div class="col-lg-10">
-											<textarea class="form-control" rows="10" name="texto"></textarea>
-										</div>
-									</div>
-									
-									
-
-
-									<div class="form-group">
-										<div class="col-lg-offset-2 col-lg-10">
-											<button class="btn btn-primary">Guardar noticia</button>
-										</div>
-									</div>
-
-								</form>
-
-							</div>
-						</div>
-					</div>
-					<!-- /Basic forms -->
-				</div>
-
-			</section>
-			<!-- /Main Content -->
-
-		</div>
-		<!-- /Content area -->
-		
+                            <input type="hidden" name="idNoticia" value="<?php echo $this->_noticia['id']; ?>">
+                            <div class="form-group">
+                                <div class="col-lg-12" >
+                                    <div class="form-group">
+                                        <div class="col-lg-3">
+                                            <?php 
+                                                $this->_posiciones = array(
+                                                    'Principal portada' => '1',
+                                                    'Común portada' => '2',
+                                                    'Tercera portada' => '3',
+                                                    'Otras portada' => '4',
+                                                    'No mostrar en portada' => '0'
+                                                );
+                                                Form::setSelect($this->_posiciones,'pos_portada','pos_portada','Posición portada',$this->_noticia['pos_portada'],'form-control');
+                                            ?>
+                                         
+                                        </div>
+                                        <div class="col-lg-3">
+                                             <?php 
+                                                $this->_posiciones = array(
+                                                    'Principal sección' => '1',
+                                                    'Común sección' => '2',
+                                                    'Tercera sección' => '3',
+                                                    'Otras sección' => '4',
+                                                    'No mostrar en sección' => '0'
+                                                );
+                                                        Form::setSelect($this->_posiciones,'pos_seccion','pos_seccion','Posición sección',$this->_noticia['pos_seccion'],'form-control');
+                                              ?>
+                                        </div>
+                                        <div class="col-lg-3">
+                                                <?php 
+                                                        Form::select($this->_firmantes,'id','nombre','firmante','Firmante',$this->_noticia['id_firmante'],'form-control');
+                                                ?>
+                                        </div>
+                                        <div class="col-lg-3">
+                                                <?php 
+                                                        Form::select($this->_secciones,'id','seccion','seccion','Sección',$this->_noticia['id_seccion'],'form-control');
+                                                ?>
+                                        </div>	
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-4">
+                                            <label for="select1" class="col-lg-4 control-label">Desde: </label>
+                                            <div class="col-lg-8">
+                                                <input type="date" name="desde" class="date form-group" value="<?php echo explode(' ', $this->_noticia['desde'])[0] ;?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="select1" class="col-lg-4 control-label">Hasta: </label>
+                                            <div class="col-lg-8">
+                                                <input type="date" name="hasta" class="date form-group" value="<?php echo explode(' ', $this->_noticia['hasta'])[0] ;?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label for="select1" class="col-lg-5 control-label">Orden</label>
+                                            <div class="col-lg-7">
+                                                <input type="number" class="form-control" value="<?php echo $this->_noticia['orden']; ?>" name="orden"/>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input1" class="col-lg-2 control-label">Título</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="titulo"  class="form-control" id="tituloH" value="<?php echo $this->_noticia['titulo']; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input2" class="col-lg-2 control-label">Subtítulo</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="subtitulo"  class="form-control" id="tituloH" value="<?php echo $this->_noticia['subtitulo']; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input3" class="col-lg-2 control-label">Entradilla</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" rows="3" id="entradilla" name="entradilla"><?php echo  $this->_noticia['entradilla']; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input3" class="col-lg-2 control-label">Texto</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" id="texto"  rows="10" name="texto"><?php echo $this->_noticia['texto']; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button class="btn btn-primary" name="guardar">Guardar noticia</button>
+                                    <button class="btn btn-success" name="publicarahora">Guardar noticia y publicar ahora</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                       
+                    </div>
+                </div>
+                <!-- /Basic forms -->
+            </div>
+             <div class="col-lg-12">
+                            <div class="module">
+                                <div class="module-content clearfix">
+                                    <ul>
+                                        <li>Si va a guardar noticia y publicar ahora no es necesario setear el valor desde</li>
+                                        <li>La noticia permanecerá publicada hasta las 00:00 del día seleccionado</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+    </section>
+    <!-- /Main Content -->
+    
+</div>
+<!-- /Content area -->
