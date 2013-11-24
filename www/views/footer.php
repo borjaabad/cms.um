@@ -15,8 +15,9 @@
         </div>
       </footer>
     </div>
-    <script src="public/js/jquery.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/bootswatch.js"></script>
+    <script src="<?php echo BASE_URL; ?>public/js/jquery.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>public/js/bootstrap.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>public/js/bootswatch.js"></script>
+    <script src="<?php echo BASE_URL; ?>public/js/base.js"></script>
   </body>
 </html>

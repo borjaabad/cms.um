@@ -29,10 +29,9 @@
                 <js>
                     <file>nueva.js</file>
                     <file>jquery.tools.min.js</file>
-                    <file>bootstrap-wysiwyg.js</file>                    
                     <allowedviews>
                         <view>editor</view>
-					</allowedviews>
+                    </allowedviews>
                 </js>				
 		<css>
                     <file>calendar.css</file>

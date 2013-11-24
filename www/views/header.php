@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,10 +25,7 @@
           <ul class="nav navbar-nav">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Trabajo final <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a tabindex="-1" href="<?php echo BASE_URL; ?>bibliografia">Bibliografía</a></li>
-                <li class="divider"></li>
-                <li><a tabindex="-1" href="../amelia/">Necesidades</a></li>
+              <ul class="dropdown-menu" aria-labelledby="themes" id="menuSecciones">
               </ul>
             </li>
             <li>

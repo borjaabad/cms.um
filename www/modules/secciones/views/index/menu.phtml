@@ -1,0 +1,14 @@
+<?php
+if ($this->_secciones) {
+    foreach ($this->_secciones as $seccion) {
+        echo '<li><a tabindex="-1" href="'.
+                BASE_URL.'seccion/'.$seccion["id"].'/'.
+                $this->getUrlFriendlyString($seccion["seccion"]).'">'.
+                $seccion["seccion"]
+                .'</a></li>';
+        echo '<li class="divider"></li>';
+        
+    }
+}
+?>
+                                                                                            
