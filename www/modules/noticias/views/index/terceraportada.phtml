@@ -1,0 +1,27 @@
+				<div class="row">
+					
+					<!-- Full width table -->
+					<div class="col-lg-12">
+							<div class="module no-padding">
+								<div class="module-content table-responsive">
+									<table class="table table-striped">
+
+										<tbody>
+											<?php if($this->_noticias){
+												foreach ($this->_noticias as $noticia){
+													echo '<tr>';
+    													echo '<td>
+																'.$noticia['titulo'].'
+														  </td>';
+													echo '</tr>';
+												}
+											}?>
+											
+										</tbody>
+									</table>
+									
+								</div>
+							</div>
+					</div>
+					<!-- /Full width table -->
+				</div>
