@@ -1,7 +1,7 @@
 <?php 
 
 
-define('BASE_URL','http://cms.um/');
+define('BASE_URL','http://cmsum.com/');
 define('DEFAULT_CONTROLLER','index');
 define('DEFAULT_COMPONENT','default');
 define('DEFAULT_LAYOUT','default');

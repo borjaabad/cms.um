@@ -15,6 +15,7 @@ class indexController extends Controller {
         
     //noticias/nueva
     public function nueva() {
+	
         $firmante = $this->loadModel('firmante');
         $seccion = $this->loadModelFromOtherComponent('seccion', 'secciones');
         $noticia = $this->loadModel('noticia');
@@ -22,6 +23,7 @@ class indexController extends Controller {
         $this->_view->_noticia = $noticia->getNoticia();
         $this->_view->_secciones = $seccion->getSecciones();
         $this->_view->_firmantes = $firmante->getFirmantes();
+		
         $this->_view->renderizar('editor', true);
     }
         

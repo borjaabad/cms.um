@@ -1,7 +1,7 @@
 <?php 
 
-define('BASE_URL','http://cms.um/back/');
-define('URLWWW','http://cms.um/');
+define('BASE_URL','http://cmsum.com/back/');
+define('URLWWW','http://cmsum.com/');
 
 define('DEFAULT_CONTROLLER','index');
 define('DEFAULT_COMPONENT','default');

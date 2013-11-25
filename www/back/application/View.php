@@ -22,9 +22,11 @@ class View {
         //Si no existe un controlador con ese nombre busca la vista en index
         if (!is_readable($rutaView)) {
             $rutaView = ROOT . 'components' . DS . $this->_componente . DS . 'views' . DS . 'index' . DS . $vista . '.phtml';
+			
         }
         if (is_readable($rutaView)) {
             if ($item) {
+			//echo $rutaView;exit;
                 include_once ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'header.php';
                 include_once $rutaView;
                 include_once ROOT . 'views' . DS . 'layout' . DS . DEFAULT_LAYOUT . DS . 'footer.php';
