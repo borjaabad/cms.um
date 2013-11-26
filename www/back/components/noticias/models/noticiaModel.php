@@ -44,7 +44,18 @@ class noticiaModel extends Model{
                                 . "noticias.id_firmante as id_firmante, noticias.orden as orden, noticias.pos_seccion as pos_seccion, noticias.pos_portada as pos_portada, noticias.desde as desde, noticias.hasta as hasta"
                                 . " FROM noticias,secciones,firmantes WHERE secciones.id=noticias.id_seccion and noticias.id_firmante=firmantes.id and noticias.id=$id";
 			$noticia = $noticia->_db->query($query) or die(mysql_error().mysql_errno());
-			return $noticia->fetch();
+			
+			$noticia = $noticia->fetch();
+
+			$noticia['desde'] =  explode(' ', $noticia['desde']);
+			$noticia['desde'] =  $noticia['desde'][0];
+			$noticia['hasta'] =  explode(' ', $noticia['hasta']);
+			$noticia['hasta'] =  $noticia['hasta'][0];
+                        
+                      //  echo $noticia['desde'].'<br>'.$noticia['hasta'];exit;
+                        
+			return $noticia;
+			
 		}
 		catch (PDOException $e) {
 			echo $e->getMessage();

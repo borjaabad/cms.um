@@ -15,8 +15,8 @@ class indexController extends Controller{
 
         
         //noticias/noticia/id/arg-s
-	public function noticia($id,$noticia){
-            
+	public function noticia($id,$noticia){  
+               
                 $id = (int)$id;
 		$noticia = $this->loadModel('noticia');
                 

@@ -29,11 +29,12 @@ class paginaModel extends Model{
 	}
         
         public function getPagina($id){
-            
+           
                     
            	try {	
                         $paginas = new paginaModel();
 			$query = "SELECT enlace FROM paginas WHERE id = '" . $this->validaInt($id). "'";
+                        
                         $paginas = $paginas->_db->query($query) or die(mysql_error().mysql_errno());
                                
                         
@@ -50,13 +51,13 @@ class paginaModel extends Model{
 
 
         public function savePagina(){
-            
 		try {
+                        $tituloNormalizado =  Controller::normalizaStringToUrlFilesystemMatch($_POST['titulo']);
+                        
 			$conn = $this->_db->prepare("INSERT INTO paginas (titulo, descripcion, enlace) VALUES (?, ?, ?)") or die(mysql_error().mysql_errno());
-                        if($conn->execute(array($this->getTexto('titulo'),$this->getTexto('descripcion'),  Controller::normalizaStringToUrlFilesystemMatch($this->getTexto('titulo'))))){
-                                    return true;
-                        }
-                            
+                        if($conn->execute(array($this->getTexto('titulo'),$this->getTexto('descripcion'), $tituloNormalizado)))
+                                    return true;                                   
+    
                         return false;
 		}
 		catch (PDOException $e) {

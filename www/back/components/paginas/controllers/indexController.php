@@ -48,18 +48,18 @@ class indexController extends Controller{
 		if(isset($_POST['paginas'])) {
 			$paginas = $_POST['paginas'];
 			$pagina = $this->loadModel('pagina');
-                            
-			if($pagina->eliminar($paginas)){
+                        
                             foreach ($paginas as $pg){
-                                 
-                                $name = $pagina->getPagina($pg);
-                                if(!unlink(ROOT . DS . '..' . DS . $name['enlace']))
+                                $name = $pagina->getPagina($pg);                            
+
+                                if(!unlink(ROOTWWW . DS . $name['enlace'].'.php'))
                                      Alertify::add('Hubo un problema eliminando el archivo '.$name['enlace'],'error');
-                            }
-                                Alertify::add('Eliminación OK de la BBDD','success');
-                        }
-			else 
-				Alertify::add('Hubo un problema con la eliminación.','error');
+                                else
+                   			if($pagina->eliminar($paginas))
+                                            Alertify::add('Eliminación OK de la BBDD y del FS','success');
+                                        else 
+                                            Alertify::add('Hubo un problema con la eliminación.','error');
+                           }	
 		}else
 			Alertify::add('No seleccionó ninguna página.','log');
                             

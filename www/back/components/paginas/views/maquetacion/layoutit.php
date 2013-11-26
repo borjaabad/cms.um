@@ -13,7 +13,7 @@
                         <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                         <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
                         <div class="preview">' . $modulo->displayname . '</div>
-                        <div class="view">
+                        <div class="view editable">
                             [['.$modulo->parent.'::'.$modulo->controller.'::'.$modulo->method.']]
                         </div>
                     </div>';
@@ -28,23 +28,25 @@
         <meta name="author" content="Borja Abad">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <script type="text/javascript" src="http://cms.um/back/public/js/alertify.min.js"></script>
-        <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/jquery.min.js"></script>
-        <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/jquery.ui.touch-punch.min.js"></script>
-        <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/scripts.min.js"></script>
-        <script type="text/javascript" src="http://cms.um/back/components/paginas/public/js/jquery.htmlClean.js"></script>
-        <link rel="StyleSheet" href="http://cms.um/back/public/css/alertify.default.css" id="toggleCSS" type="text/css">
-        <link rel="StyleSheet" href="http://cms.um/back/components/paginas/public/css/bootstrap.min.css" type="text/css">
-        <link rel="StyleSheet" href="http://cms.um/back/components/paginas/public/css/layoutit.css" type="text/css">
-        <link rel="StyleSheet" href="http://cms.um/back/public/css/alertify.core.css" type="text/css">
-        <link rel="StyleSheet" href="http://cms.um/back/public/css/alertify.default.css" id="toggleCSS" type="text/css">
+        <script type="text/javascript" src="http://cmsum.com/back/public/js/alertify.min.js"></script>
+        <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/jquery.min.js"></script>
+        <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/scripts.min.js"></script>
+        <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/jquery.htmlClean.js"></script>
+        <link rel="StyleSheet" href="http://cmsum.com/back/public/css/alertify.default.css" id="toggleCSS" type="text/css">
+        <link rel="StyleSheet" href="http://cmsum.com/back/components/paginas/public/css/bootstrap.min.css" type="text/css">
+        <link rel="StyleSheet" href="http://cmsum.com/back/components/paginas/public/css/layoutit.css" type="text/css">
+        <link rel="StyleSheet" href="http://cmsum.com/back/public/css/alertify.core.css" type="text/css">
+        <link rel="StyleSheet" href="http://cmsum.com/back/public/css/alertify.default.css" id="toggleCSS" type="text/css">
+        <link rel="StyleSheet" href="http://cmsum.com/back/public/js/aloha/css/aloha.css" type="text/css">
 
+        <script type="text/javascript" src="http://cmsum.com/back/public/js/aloha/lib/require.js"></script>
+        <script type="text/javascript" src="http://cmsum.com/back/public/js/aloha/lib/aloha.js"  data-aloha-plugins="common/ui,common/align,common/image,common/characterpicker,common/format,common/highlighteditables,common/link"></script>
 
-    </head>
-
-
+</head>
     <body class="edit">
+
         <div class="navbar navbar-inverse navbar-fixed-top navbar-layoutit">
             <div class="navbar-header">
                 <button data-target="navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
@@ -178,30 +180,10 @@
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
                                     <span class="configuration">
-                                        <span class="btn-group btn-group-xs">
-                                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Align <span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li class="active" ><a href="#" rel="">Default</a></li>
-                                                <li class="" ><a href="#" rel="text-left">Left</a></li>
-                                                <li class="" ><a href="#" rel="text-center">Center</a></li>
-                                                <li class="" ><a href="#" rel="text-right">Right</a></li>
-                                            </ul>
-                                        </span>
-                                        <span class="btn-group btn-group-xs">
-                                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Emphasis <span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li class="active" ><a href="#" rel="">Default</a></li>
-                                                <li class="" ><a href="#" rel="text-muted">Muted</a></li>
-                                                <li class="" ><a href="#" rel="text-primary">Primary</a></li>
-                                                <li class="" ><a href="#" rel="text-success">Success</a></li>
-                                                <li class="" ><a href="#" rel="text-info">Info</a></li>
-                                                <li class="" ><a href="#" rel="text-warning">Warning</a></li>
-                                                <li class="" ><a href="#" rel="text-danger">Danger</a></li>
-                                            </ul>
-                                        </span>
+                                        
                                     </span>
                                     <div class="preview">Título</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <h3 contenteditable="true">h3. Lorem ipsum dolor sit amet.</h3>
                                     </div>
                                 </div>
@@ -210,7 +192,7 @@
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
 
                                     <div class="preview">Párrafo</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <p contenteditable="true">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
                                     </div>
                                 </div>
@@ -218,7 +200,7 @@
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
                                     <div class="preview">Dirección</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <address contenteditable="true">
                                             <strong>Twitter, Inc.</strong><br>
                                             795 Folsom Ave, Suite 600<br>
@@ -249,7 +231,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="list-inline">Inline</a>
                                     </span>
                                     <div class="preview">Lista desord.</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <ul contenteditable="true">
                                             <li>Lorem ipsum dolor sit amet</li>
                                             <li>Consectetur adipiscing elit</li>
@@ -270,7 +252,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="list-inline">Inline</a>
                                     </span>
                                     <div class="preview">Lista ordenada</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <ol contenteditable="true">
                                             <li>Lorem ipsum dolor sit amet</li>
                                             <li>Consectetur adipiscing elit</li>
@@ -290,7 +272,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="dl-horizontal">Horizontal</a>
                                     </span>
                                     <div class="preview">Descripción</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <dl contenteditable="true">
                                             <dt>Description lists</dt>
                                             <dd>A description list is perfect for defining terms.</dd>
@@ -320,7 +302,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="table-condensed">Condensed</a>
                                     </span>
                                     <div class="preview">Tabla</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <table class="table" contenteditable="true">
                                             <thead>
                                                 <tr>
@@ -372,7 +354,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="form-inline">Inline</a>
                                     </span>
                                     <div class="preview">Formulario</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <form role="form">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
@@ -402,7 +384,7 @@
                                     <span class="configuration">
                                     </span>
                                     <div class="preview">Form horiz.</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <form class="form-horizontal" role="form">
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
@@ -464,7 +446,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="disabled">Disabled</a>
                                     </span>
                                     <div class="preview">Botón</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <button type="button" class="btn btn-default" contenteditable="true">Default</button>		
                                     </div>
                                 </div>
@@ -475,7 +457,7 @@
                                         <a class="btn btn-xs btn-default" href="#" rel="well">Well</a>
                                     </span>
                                     <div class="preview">Destacado</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <div class="jumbotron" contenteditable="true">
                                             <h1>Destaca</h1>
                                             <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
@@ -487,7 +469,7 @@
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
                                     <div class="preview">Cabecera</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <div class="page-header">
                                             <h1 contenteditable="true">Example page header <small>Subtext for header</small></h1>
                                         </div>
@@ -497,7 +479,7 @@
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
                                     <div class="preview">Texto</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <h2 contenteditable="true">Heading</h2>
                                         <p contenteditable="true">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
                                         <p><a class="btn" href="#" contenteditable="true">View details &raquo;</a></p>
@@ -509,7 +491,7 @@
                                     <span class="configuration">
                                     </span>
                                     <div class="preview">Lista diseño</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <div class="list-group" contenteditable="true">
                                             <a href="#" class="list-group-item active">Home</a>
                                             <div class="list-group-item">List header</div>
@@ -540,7 +522,7 @@
 
                                     </span>
                                     <div class="preview">Lista</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h3 class="panel-title" contenteditable="true">Panel title</h3>
@@ -570,7 +552,7 @@
 
                                     </span>
                                     <div class="preview">Alertas</div>
-                                    <div class="view">
+                                    <div class="view editable">
                                         <div class="alert alert-success alert-dismissable" contenteditable="true">
                                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                             <h4>Alert!</h4>
@@ -601,12 +583,6 @@
                 <div id="download-layout"><div class="container"></div></div>
             </div>
             <!--/row-->
-
-            <script type="text/javascript">
-                $(document).ready(function() {
-
-                });
-            </script>
         </div><!--/.fluid-container-->
 
         <script type="text/javascript">
@@ -622,7 +598,7 @@
             }
 
             function downloadLayout() {
-                $.ajax({
+                j.ajax({
                     type: "POST",
                     url: "/build_v3/downloadLayout",
                     data: {'layout-v3': $('#download-layout').html()},
@@ -633,7 +609,7 @@
             }
 
             function downloadHtmlLayout() {
-                $.ajax({
+                j.ajax({
                     type: "POST",
                     url: "/build_v3/downloadLayout",
                     data: {'layout-v3': $('#download-layout').html()},
@@ -645,7 +621,7 @@
 
             function undoLayout() {
 
-                $.ajax({
+                j.ajax({
                     type: "POST",
                     url: "/build_v3/getPreviousLayout",
                     data: {},
@@ -657,7 +633,7 @@
 
             function redoLayout() {
 
-                $.ajax({
+                j.ajax({
                     type: "POST",
                     url: "/build_v3/getPreviousLayout",
                     data: {},
@@ -666,25 +642,26 @@
                     }
                 });
             }
-
-            $(document).on('hidden.bs.modal', function(e) {
-                $(e.target).removeData('bs.modal');
+            
+            
+            j(document).on('hidden.bs.modal', function(e) {
+                j(e.target).removeData('bs.modal');
             });
 
-            $('body').on('click', '#continue-share-non-logged', function() {
-                $('#share-not-logged').hide();
-                $('#share-logged').removeClass('hide');
-                $('#share-logged').show();
+            j('body').on('click', '#continue-share-non-logged', function() {
+                j('#share-not-logged').hide();
+                j('#share-logged').removeClass('hide');
+                j('#share-logged').show();
             });
 
-            $('body').on('click', '#continue-download-non-logged', function() {
-                $('#download-not-logged').hide();
-                $('#download').removeClass('hide');
-                $('#download').show();
-                $('#downloadhtml').removeClass('hide');
-                $('#downloadhtml').show();
-                $('#download-logged').removeClass('hide');
-                $('#download-logged').show();
+            j('body').on('click', '#continue-download-non-logged', function() {
+                j('#download-not-logged').hide();
+                j('#download').removeClass('hide');
+                j('#download').show();
+                j('#downloadhtml').removeClass('hide');
+                j('#downloadhtml').show();
+                j('#download-logged').removeClass('hide');
+                j('#download-logged').show();
             });
 
 
@@ -693,7 +670,6 @@
         <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true"></div>
-
     </body>
 </html>
 
