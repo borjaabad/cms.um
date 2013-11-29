@@ -136,8 +136,8 @@ class noticiaModel extends Model{
                             
 			$noticia->titulo = $this->getTexto('titulo');
 			$noticia->subtitulo = $this->getTexto('subtitulo');
-			$noticia->entradilla = $this->getTexto('entradilla');
-			$noticia->texto = $this->getTexto('texto');
+			$noticia->entradilla = html_entity_decode($this->getTexto('entradilla'));
+			$noticia->texto = html_entity_decode($this->getTexto('texto'));
 			$noticia->pos_portada = $this->getInt('pos_portada');
 			$noticia->pos_seccion = $this->getInt('pos_seccion');
                             

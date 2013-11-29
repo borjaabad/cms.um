@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
@@ -24,19 +25,17 @@ require_once APP_PATH . 'Media.php';
 require_once APP_PATH . 'Alertify.php';
 
 //Modelos del sistema
-require_once ROOT.'models'.DS.'menuModel.php';
+require_once ROOT . 'models' . DS . 'menuModel.php';
 
 Session::init();
 
-try{ 
-	$request = new Request();
-	$components = Component::loadComponent($request);
-        
-	Bootstrap::run($request);
-}
-catch (Exception $e){
-	$e->getMessage();	
-}
+try {
+    $request = new Request();
+    $components = Component::loadComponent($request);
 
+    Bootstrap::run($request);
+} catch (Exception $e) {
+    $e->getMessage();
+}
 ?>
 

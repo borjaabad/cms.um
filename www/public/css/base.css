@@ -69,16 +69,25 @@ html, body{
 .noticia.titulo{
     font-size: 1.5em;
     padding: 5px;
+    margin-top: -15px;
     
 }
 .noticia.entradilla{
     font-size: 1.2em;
     padding: 5px;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
+    color:#59636d;
 }
 
 .otrasnoticias .seccion{
     padding-top: 20px;
+}
+
+.noticia.subtitulo{
+    color:#59636d;
+    font-size: 0.8em;
+
+    padding-left: 8px;
 }
 
 .otrasnoticias .titulo{
@@ -89,11 +98,6 @@ html, body{
 
 }
 
-.noticia.entradilla{
-    color:#59636d;
-    font-size: 1.1em;
-
-}
 
 
 .noticia.img{
@@ -112,5 +116,36 @@ html, body{
     background: white;
     padding-top: 50px;
     
+}
+
+.noticia.leermas{
+float: right;
+margin-top: -15px;
+}
+
+.noticiacomun{
+box-shadow: 0px 0px 6px #999999;
+padding: 10px;
+margin-bottom:  20px;
+}
+
+.noticiatercera{
+box-shadow: 0px 0px 6px #999999;
+padding: 10px;
+margin: 0px;
+padding-top: 30px;
+margin-bottom: 20px;
+}
+
+.titulotercera{
+    padding-top: 10px;
+    font-size: 1.4em;
+}
+
+.modulo{
+    box-shadow: 0px 0px 6px #999999;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 

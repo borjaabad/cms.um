@@ -18,7 +18,7 @@
               relativeUrls: false,// whether to adjust url's to be relative
               // if false, url's are already relative to the
               // entry less file
-              rootpath: ":/cms.um/back/noticias"// a path to add on to the start of every url
+              rootpath: ":/cmsum.com/back/noticias"// a path to add on to the start of every url
               //resource
             };
         </script>

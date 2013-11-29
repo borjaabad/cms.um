@@ -20,120 +20,94 @@ class moduloModel extends Model{
 		else 
 			return false;
 	}
-	/*
-	public function getJs(){
-		GLOBAL $modules;
-		$js = array();
-		foreach ($modules->module as $module){
-			if($module->name == NAME_COM){
-				if($componente->media->js)
-					foreach ($componente->media->js as $array)
-						array_push($js, $array);
-			}
-		}
-		if(count($js))
-			return $js;
-
-		return false;
-	}*/
-
-	/*	
-	public function getCss(){
-		GLOBAL $components;
-		$css = array();
-		foreach ($components->component as $componente){
-			if($componente->name == NAME_COM){
-				if($componente->media->css)
-					foreach ($componente->media->css as $array)
-						array_push($css, $array);
-			}
-		}
-		if(count($css))
-			return $css;
-
-		return false;
-	}*/
-	
-	/*
-	public function loadComponent($request){
-	
-		$component = new Component();
-		$componentes = $component->getComponentes();
+        
+        public function getModulosPropios(){
 		
-		foreach ($componentes->component as $componente){
-			//Componente a cargar
-			if($componente->name == $request->getComponente()){
-				if($component->enabled($componente)){
-					define('NAME_COM' , $componente->name);
-					define('BASE_URL_COM' , BASE_URL.$componente->name.'/');
-					define('ROOT_COM', ROOT .'components'.DS.NAME_COM.DS);
-					if(isset($componente->displayName))
-						define('DISPLAYNAME_COM' , $componente->displayName);
-					else 
-						define('DISPLAYNAME_COM', false);
-					if(isset($componente->displayName))
-						define('SQLPREFIX_COM' , $componente->displayName);
-					else 
-						define('SQLPREFIX_COM' , false);
-					if(isset($componente->menu))
-						define('MENU_COM' , $componente->menu);
-					else 
-						define('MENU_COM' , false);
-				}
-				else
-					throw new Exception('Componete no habilitado, revise la configuracion de components.xml');
-			}
+		try {	
+			$query = "SELECT * FROM modulos";
+                        $this->cargaBD();
+                        $modulos = $this->_db->query($query) or die(mysql_error().mysql_errno());
+                        $modulos = $modulos->fetchAll(PDO::FETCH_ASSOC);
+                            
+                        return $modulos;
 		}
-		return $componentes;
-	}*/
-	/*
-	public function enabled($componente){
-		if($componente->enabled == 'true'){
-			define('ENABLED_COM', true);
-			return true;
-		}
-		return false;
-	}
-	
-	public function enablecomponent($componente,$disable=false){	
-		
-		try{
-			$xml = ROOT.'components'.DS.'components.xml';
-			$componentes = simplexml_load_file($xml);
-			
-			foreach($componentes->components->component as $comp){
-				if($comp->name == $componente  &&  $disable){
-                                        if($comp->locked!='true')
-                                            $comp->enabled = 'false';
-                                        else
-                                            return false;
-					break;
-				}
-				if($comp->name == $componente  &&  !$disable){
-					$comp->enabled = 'true';
-					break;
-				}
-			}
-			if($componentes->asXML($xml)){
-				return true;
-			}
+		catch (PDOException $e) {
+			echo $e->getMessage();
 			return false;
 		}
-		catch (Exception $e){
-			
+	}
+        
+        public function getModuloPropio($id){
+		$id=$this->validaInt($id);
+		try {	
+			$query = "SELECT * FROM modulos WHERE id=$id";
+                        $this->cargaBD();
+                        $modulo = $this->_db->query($query) or die(mysql_error().mysql_errno());
+                                                
+                        $modulo = $modulo->fetch();
+                        $modulo['content'] = stripslashes($modulo['content']);
+                        $modulo['content'] = htmlspecialchars($modulo['content']);
+                            
+                        return $modulo;
+		}
+		catch (PDOException $e) {
+			echo $e->getMessage();
 			return false;
 		}
-		
-		
 	}
-	*//*
-	public function disablecomponent($componente){
-		$component = new Component();
-		if($component->enablecomponent($componente,true))
-			return true;
-		return false;
+        
+        public function agregar(){
+		try {
+                        $this->cargaBD();
+			$conn = $this->_db->prepare("INSERT INTO modulos (nombre) VALUES (?)") or die(mysql_error().mysql_errno());
+                        if($conn->execute(array($this->getTexto('nombre'))))
+                                    return true;                                   
+    
+                        return false;
+		}
+		catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+        }
+        
+        
+        public function guardar(){
+		try {
+                        $this->cargaBD();
+			$conn = $this->_db->prepare("UPDATE modulos SET `content`=? WHERE id=?") or die(mysql_error().mysql_errno());
+                        if($conn->execute(array(html_entity_decode($this->getTexto('content')),$this->getInt('idModulo'))))
+                                    return true;                                   
+    
+                        return false;
+		}
+		catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
+        }
+        
+       public function eliminar($modulos){
+                $proccess = true;
+		
+                try {
+                        $this->cargaBD();
+			$conn = $this->_db->prepare("DELETE FROM modulos WHERE id = ?");
+			foreach ($modulos as $id){
+				if(!$conn->execute(array($id)))
+					$proccess = false;
+			}
+		
+                if(!$proccess)
+                    return false;
+                return true;
+                }
+		catch (PDOException $e) {
+			echo $e->getMessage();
+			return false;
+		}
 	}
-        */
+    
     
         
 }

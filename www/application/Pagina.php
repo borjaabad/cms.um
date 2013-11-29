@@ -22,7 +22,7 @@ class Pagina{
         preg_match_all('/\[\[.*\]\]/i', $plantilla, $this->_modulos);
         $this->_modulos = $this->cargaModulos($this->_modulos[0]);
         
-
+ 
         //Una vez procesados los modulos reemplazamos las etiquetas
         // de la plantilla por la salida que produjo cada módulo
         if($this->_modulos = $this->procesaModulos($this->_modulos))
@@ -109,6 +109,7 @@ class Pagina{
     }
 
     public function SetPlantillaProcesada($plantillaProcesada){
+        
         if($plantillaProcesada)
             $this->plantillaProcesada = $plantillaProcesada;
     }

@@ -27,7 +27,7 @@
 define(
 ['aloha', 'jquery', 'aloha/contenthandlermanager'],
 function(Aloha, jQuery, ContentHandlerManager) {
-	
+	"use strict";
 
 	var
 		GENTICS = window.GENTICS,

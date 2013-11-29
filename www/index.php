@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', realpath(dirname(__FILE__)) . DS);
 define('APP_PATH', ROOT . 'application' . DS);
@@ -6,7 +9,6 @@ define('APP_PATH', ROOT . 'application' . DS);
 
 //Aplicación siempre cargada
 require_once APP_PATH . 'Config.php';
-require_once APP_PATH . 'Module.php';
 require_once APP_PATH . 'Request.php';
 require_once APP_PATH . 'Bootstrap.php';
 require_once APP_PATH . 'Controller.php';
@@ -30,7 +32,7 @@ try{
         else
             Bootstrap::run($peticion);
              
-          
+        
           
       //  $buffer = ob_get_contents();
 

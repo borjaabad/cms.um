@@ -20,6 +20,7 @@ class Bootstrap {
     public function cargaPagina($pagina=false){
        
         try{
+            
             if ($pagina == 'index')
                 $pagina = 'portada';
 
@@ -33,7 +34,7 @@ class Bootstrap {
             $pag->setHeader(ROOT. 'views'. DS . 'header.php');
             $pag->setFooter(ROOT. 'views'. DS . 'footer.php');
             $pag->procesarPlantilla();
-             
+            
             $pag->renderizar();
             return true;
             

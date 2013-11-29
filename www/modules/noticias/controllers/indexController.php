@@ -39,21 +39,21 @@ class indexController extends Controller{
                 
 		$noticias = $this->loadModel('noticia');
 		$this->_view->_noticias = $noticias->getNoticiasPortada(1,$idseccion);
-		$this->_view->renderizar('principalportada',true);
+		$this->_view->renderizar('principalseccion',true);
 	}
         //noticias/comunportada
 	public function comunportada(){
 		
 		$noticias = $this->loadModel('noticia');
 		$this->_view->_noticias = $noticias->getNoticiasPortada(2);
-		$this->_view->renderizar('principalportada',true);
+		$this->_view->renderizar('comunportada',true);
 	}
         //noticias/comunseccion
 	public function comunseccion($idseccion,$seccion){
 		
 		$noticias = $this->loadModel('noticia');
 		$this->_view->_noticias = $noticias->getNoticiasPortada(2,$idseccion);
-		$this->_view->renderizar('comunportada',true);
+		$this->_view->renderizar('comunseccion',true);
 	}
         //noticias/terceraportada
 	public function terceraportada(){
@@ -63,11 +63,11 @@ class indexController extends Controller{
 		$this->_view->renderizar('terceraportada',true);
 	}
         //noticias/terceraseccion
-	public function terceraseccion($idseccion,$seccion){
+	public function terceraseccion($idseccion){
 		
 		$noticias = $this->loadModel('noticia');
 		$this->_view->_noticias = $noticias->getNoticiasPortada(3,$idseccion);
-		$this->_view->renderizar('terceraportada',true);
+		$this->_view->renderizar('terceraseccion',true);
 	}   
         //noticias/otrasportada
 	public function otrasportada(){

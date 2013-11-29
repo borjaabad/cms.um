@@ -1,18 +1,93 @@
-<?php
-$modulos = $this->_modulos;
-$modulos = $modulos->asXML();
+<!-- Site header -->
+			<header class="main-header">
+				
+				<!-- Page title -->
+				<h3>
+					<a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
+					Listado de módulos propios
+				</h3>
+				
+				<!-- Profile dropdown -->
+				<span class="user-profile">
+					<a href="<?php echo BASE_URL.'login/cerrarsesion' ?>" class="user-dropdown" >
+						<span>Cerrar sesión</span>
+					</a>
+				</span>
 
-$plantilla = BASE_URL.'components/paginas/views/maquetacion/layoutit.php?o='.$modulos;
+			</header>
+			<!-- /Site header -->
+			
+			<!-- Main Content -->
+			<section class="main-content padding">
+				<div class="row">
+				<!-- Basic forms -->
+					<div class="col-lg-6">
+						<div class="module">
+							<div class="module-header"></div>
+							<div class="module-content">
+								<form name="firmanteForm2" method="post" action="<?php echo BASE_URL_COM.'modulos/agregar'; ?>" class="form-horizontal">
+									<div class="form-group">
+										<label for="input1" class="col-lg-2 control-label">Nombre</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control" name="nombre" />
+										</div>
+									</div>
+                                                                    	<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<button type="submit" class="btn btn-success">Agregar nuevo módulo</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /Basic forms -->
+				</div>
+				<div class="row">
+					
+					<!-- Full width table -->
+					<div class="col-lg-12">
+						<form name="modulosForm" method="post" action="<?php echo BASE_URL_COM.'modulos/eliminar'; ?>">
+							<div class="module no-padding">
+								<div class="module-content table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th></th>
+												<th>ID</th>
+												<th>Nombre</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php if($this->_modulos){
+												foreach ($this->_modulos as $modulo){
+													echo '<tr>';
+													echo '<td style="width:15px;"><input name="modulos[]" type="checkbox" id="checkbox[]" value="'.$modulo['id'].'"></td>';                                                 
+													echo '<td style="width:25px;">'.$modulo['id'].'</td>';
+													echo '<td>
+                                                                                                                <a href="'.BASE_URL_COM.'modulos/editor/'.$modulo['id'].'/'.$modulo['nombre'].'">'.
+                                                                                                                    $modulo['nombre']
+                                                                                                                .'</a>
+                                                                                                                </td>';
+													echo '</tr>';
+												}
+											}?>
+										</tbody>
+									</table>
+									
+								</div>
+							</div>
+							<?php if($this->_modulos){?> 
+								<button type="submit" class="btn btn-danger">Eliminar módulos seleccionados</button>
+							<?php } ?>
+						</form>
+					</div>
+					<!-- /Full width table -->
+				</div>
+			</section>
+			<!-- /Main Content -->
 
-?>
+		</div>
+		<!-- /Content area -->
 
-<iframe name="Stack" 
-        frameborder="0" 
-        scrolling="yes" 
-        id="layoutit" 
-        width="100%" 
-        height="100%" 
-        onload='javascript:resizeIframe();'
-        overflow-x="hidden"
-        src="<?php echo $plantilla; ?>" 
-        />
+

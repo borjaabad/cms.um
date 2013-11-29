@@ -32,13 +32,12 @@
               <a href="<?php echo BASE_URL; ?>contacto">Contacto</a>
             </li>
             <li>
-              <a href="http://news.bootswatch.com">Gráficos y anexos</a>
+              <a href="<?php echo BASE_URL; ?>graficos-y-anexos">Gráficos y anexos</a>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://builtwithbootstrap.com/" target="_blank">Borja Abad</a></li>
-            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Licenciatura en sistemas</a></li>
+            <li><a>Licenciatura en sistemas</a></li>
           </ul>
 
         </div>

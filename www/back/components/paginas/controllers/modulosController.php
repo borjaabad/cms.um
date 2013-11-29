@@ -1,70 +1,75 @@
 <?php
 
-class maquetacionController extends Controller {
+class modulosController extends Controller {
 
     public function __construct() {
         parent::__construct();
         Session::control();
     }
 
-    //paginas/maquetacion
+    //paginas/modulos
     public function index() {
         $modulos = $this->loadModel('modulo');
-        $this->_view->_modulos = $modulos->getModulos();
-        $this->_view->renderizar('maquetacion', true);
+        $this->_view->_modulos = $modulos->getModulosPropios();
+        $this->_view->renderizar('listado', true);
         exit;
     }
 
-    //paginas/maquetacion/editarpagina/3/portada
-    public function editarpagina($id, $name) {
-
-        $pag = $this->loadModel('modulo');
-
-        //filtroHTMLSEGUROPORHACER($pagina)
-        //$name = $this->validaChar($name);
-        //
-
-        $this->_view->_modulos = $pag->getModulos();
-        $this->_view->renderizar('maquetacion', true);
+    //paginas/modulos/agregar
+    public function agregar() {
+           if($_POST){
+                $modulos = $this->loadModel('modulo');
+                if(empty($_POST['nombre']))
+                    Alertify::add('Nombre no puede ser vacío','error');
+                else
+                    if($modulos->agregar())
+                        Alertify::add('Se agregó correctamente','success');
+                    else
+                        Alertify::add('Hubo un problema','error');
+            }
+            header('LOCATION: '.BASE_URL_COM.'modulos');
+            exit;
+    }
+    //paginas/modulos/guardar
+    public function guardar() {
+            if($_POST){
+                $modulo = $this->loadModel('modulo');
+                    if($modulo->guardar())
+                        Alertify::add('Se agregó correctamente','success');
+                    else
+                        Alertify::add('Hubo un problema','error');
+            }
+            header('LOCATION: '.BASE_URL_COM.'modulos');
+            exit;
+    }
+    
+    //paginas/modulos/editor/123/abc
+    public function editor($id) {
+        $modulo = $this->loadModel('modulo');
+        $this->_view->_modulo = $modulo->getModuloPropio($id);
+        $this->_view->renderizar('editor', true);
         exit;
     }
+    
+    
+    //paginas/modulos/eliminar
+    public function eliminar(){
+            if(isset($_POST['modulos'])) {
+                    $modulos = $_POST['modulos'];
+                    $modulo = $this->loadModel('modulo');
 
-    //paginas/maquetacion/guardar
-    public function guardar() {//ajax
-        if ($_POST) {
+                        foreach ($modulos as $mod){
+                                    if($modulo->eliminar($modulos))
+                                        Alertify::add('Eliminación OK de la BBDD','success');
+                                    else 
+                                        Alertify::add('Hubo un problema con la eliminación.','error');
+                       }	
+            }else
+                    Alertify::add('No seleccionó ningún módulo.','log');
 
-            $pag = $this->loadModel('pagina');
-
-            //filtroHTMLSEGUROPORHACER($pagina)
-            $pagina = $_POST['html'];
-            $original = $_POST['original'];
-
-            $name = $pag->getPagina($_POST['id']);
-
-
-            //Lo que hago es traer la página limpia con el html final en el post con jquery. 
-            //Además traigo la página con todos los bloques de edición y metadatos para 
-            //poder cargar las páginas después con el editor. (getoriginal()).
-            if (file_put_contents(ROOT . '..' . DS . $name['enlace'] . '.php', $pagina) &&
-                    file_put_contents(ROOT . '..' . DS . 'original' . DS . $name['enlace'] . '.php', $original))
-                echo true;
-            echo false;
-        }
-        exit;
+            header('location: '.BASE_URL_COM.'modulos');
+            exit;
     }
-
-    //paginas/maquetacion/getoriginal/123
-    public function getoriginal($id) {
-
-        $pag = $this->loadModel('pagina');
-
-        $name = $pag->getPagina($id);
-
-        echo @file_get_contents(ROOT . '..' . DS . 'original' . DS . $name['enlace'] . '.php');
-
-        exit;
-    }
-
 }
 
 ?>

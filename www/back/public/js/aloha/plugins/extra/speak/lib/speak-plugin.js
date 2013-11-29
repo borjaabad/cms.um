@@ -29,7 +29,7 @@ define([
 	'aloha/floatingmenu',
 	'i18n!aloha/nls/i18n'
 ], function ( Plugin, FloatingMenu, i18nCore ) {
-	
+	'use strict';
 	
 	return Plugin.create('speak', {
 		

@@ -1,23 +1,45 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['autenticado'])) {
-        session_destroy();
-        header('Location: /back');
-    }
-    $modulos = $_GET['o'];
-    $modulosHTML = '';
-    $XML = new SimpleXMLElement($modulos);
-    foreach ($XML->module as $modulo) {
-        $modulosHTML .= '
+session_start();
+if (!isset($_SESSION['autenticado'])) {
+    session_destroy();
+    header('Location: /back');
+}
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+$modulosDinamicosHTML = '';
+$XML = simplexml_load_file('http://cmsum.com/modules/modules.xml');
+$XML = $XML->modules;
+foreach ($XML->module as $modulo) {
+    $modulosDinamicosHTML .= '
                     <div class="box box-element">
                         <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                         <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
                         <div class="preview">' . $modulo->displayname . '</div>
                         <div class="view editable">
-                            [['.$modulo->parent.'::'.$modulo->controller.'::'.$modulo->method.']]
+                            [[' . $modulo->parent . '::' . $modulo->controller . '::' . $modulo->method . ']]
                         </div>
                     </div>';
 }
+
+    $conexion = mysql_connect("localhost", "root","contra");  mysql_select_db("cms_um",$conexion);
+    $query = mysql_query("select * from modulos",$conexion) or die(mysql_error());
+    $tot = mysql_num_rows($query);
+    $modulosPropiosHTML = '';
+    if ($tot> 0) {
+        while ($row = mysql_fetch_assoc($query)){
+            $modulosPropiosHTML .= '
+                    <div class="box box-element">
+                        <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
+                        <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
+                        <div class="preview">' . $row['nombre'] . '</div>
+                        <div class="view editable">
+                           '. $row['content'] .'
+                        </div>
+            </div>';
+        }
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +49,7 @@
         <meta name="description" content="CMS.UM">
         <meta name="author" content="Borja Abad">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        
         <script type="text/javascript" src="http://cmsum.com/back/public/js/alertify.min.js"></script>
         <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/jquery.min.js"></script>
         <script type="text/javascript" src="http://cmsum.com/back/components/paginas/public/js/jquery.ui.touch-punch.min.js"></script>
@@ -40,27 +62,157 @@
         <link rel="StyleSheet" href="http://cmsum.com/back/public/css/alertify.core.css" type="text/css">
         <link rel="StyleSheet" href="http://cmsum.com/back/public/css/alertify.default.css" id="toggleCSS" type="text/css">
         <link rel="StyleSheet" href="http://cmsum.com/back/public/js/aloha/css/aloha.css" type="text/css">
-
+        <link rel="StyleSheet" href="http://cmsum.com/back/public/css/jquery.ui.dialog.css" type="text/css">
+        
+        
         <script type="text/javascript" src="http://cmsum.com/back/public/js/aloha/lib/require.js"></script>
-        <script type="text/javascript" src="http://cmsum.com/back/public/js/aloha/lib/aloha.js"  data-aloha-plugins="common/ui,common/align,common/image,common/characterpicker,common/format,common/highlighteditables,common/link"></script>
+        
+        <script>
+            var Aloha = {
+                settings: {
+                    toolbar: {
+                        tabs: [
+                            {
+                                label: 'tab.format.label'
+                            },
+                            {
+                                label: 'tab.insert.label'
+                            },
+                            {
+                                label: 'Actions',
+                                showOn: {
+                                    scope: 'Aloha.continuoustext'
+                                },
+                                components: [['htmlsource']]
+                            }
+                        ]
+                    }
+                },
+                plugins: {
+                    format: {
+                        config: ['b', 'i', 'p', 'sub', 'sup', 'del', 'title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat'],
+                        editables: {
+                            // no formatting allowed for title
+                            '#title': []
+                        }
+                    },
+                    link: {
+                        editables: {
+                            // No links in the title.
+                            '#title': []
+                        }
+                    },
+                    list: {
+                        editables: {
+                            // No lists in the title.
+                            '#title': []
+                        }
+                    },
+                    abbr: {
+                        editables: {
+                            // No abbr in the title.
+                            '#title': []
+                        }
+                    },
+                    image: {
+                        'fixedAspectRatio': true,
+                        'maxWidth': 1024,
+                        'minWidth': 10,
+                        'maxHeight': 786,
+                        'minHeight': 10,
+                        'globalselector': '.global',
+                        'ui': {
+                            'oneTab': false
+                        },
+                        editables: {
+                            // No images in the title.
+                            '#title': []
+                        }
+                    }
+                },
+                sidebar: {
+                    disabled: false
+                },
+                contentHandler: {
+                    allows: {
+                        elements: [
+                            'a', 'abbr', 'b', 'blockquote', 'br', 'caption', 'cite', 'code', 'col',
+                            'colgroup', 'dd', 'del', 'dl', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                            'i', 'img', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'strong',
+                            'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'u',
+                            'ul', 'span', 'hr', 'object', 'div'
+                        ],
+                        attributes: {
+                            'a': ['href', 'title', 'id', 'class', 'target', 'data-gentics-aloha-repository', 'data-gentics-aloha-object-id'],
+                            'div': ['id', 'class'],
+                            'abbr': ['title'],
+                            'blockquote': ['cite'],
+                            'br': ['class'],
+                            'col': ['span', 'width'],
+                            'colgroup': ['span', 'width'],
+                            'img': ['align', 'alt', 'height', 'src', 'title', 'width', 'class'],
+                            'ol': ['start', 'type'],
+                            'q': ['cite'],
+                            'p': ['class'],
+                            'table': ['summary', 'width'],
+                            'td': ['abbr', 'axis', 'colspan', 'rowspan', 'width'],
+                            'th': ['abbr', 'axis', 'colspan', 'rowspan', 'scope', 'width'],
+                            'ul': ['type'],
+                            'span': ['class', 'style', 'lang', 'xml:lang']
+                        },
+                        protocols: {
+                            'a': {'href': ['ftp', 'http', 'https', 'mailto', '__relative__']},
+                            'blockquote': {'cite': ['http', 'https', '__relative__']},
+                            'img': {'src': ['http', 'https', '__relative__']},
+                            'q': {'cite': ['http', 'https', '__relative__']}
+                        }
+                    }
+                }
+            };
 
-</head>
+        </script>
+        
+        <script type="text/javascript" src="http://cmsum.com/back/public/js/aloha/lib/aloha.js"
+                data-aloha-plugins="common/ui,
+                common/format,
+                common/table,
+                common/list,
+                common/link,
+                common/highlighteditables,
+                common/undo,
+                common/contenthandler,
+                common/paste,
+                common/characterpicker,
+                common/commands,
+                common/block,
+                common/image,
+                common/abbr,
+                common/horizontalruler,
+                common/align,
+                common/dom-to-xhtml,
+                extra/textcolor,
+                extra/formatlesspaste,
+
+        extra/htmlsource"></script>
+        
+        
+        
+    </head>
     <body class="edit">
-
         <div class="navbar navbar-inverse navbar-fixed-top navbar-layoutit">
             <div class="navbar-header">
                 <button data-target="navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
                     <span class="glyphicon-bar"></span>
                     <span class="glyphicon-bar"></span>
                     <span class="glyphicon-bar"></span>
-                </button>
+                </button> 
             </div>
             <div class="collapse navbar-collapse">
-
+                
                 <ul class="nav pull-right">
                     <li>
-
-
+                        
+                        
                     </li>
                 </ul>
                 <ul class="nav" id="menu-layoutit">
@@ -73,11 +225,11 @@
                             <button type="button" id="devpreview"     class="btn btn-xs btn-primary" >Desarrollo</button>
                             <button type="button" id="sourcepreview"  class="btn btn-xs btn-primary" >Prevista</button>
                         </div>
-
+                        
                         <div class="btn-group" style="padding-left:1em">							
                             <button class="btn btn-xs btn-primary" href="#clear" id="clear" >Vaciar página</button>
                         </div>
-
+                        
                         <div class="btn-group" style="padding-left:1em">							
                             <button class="btn btn-xs btn-primary" href="#abrir" id="abrir" >Abrir página</button>
                         </div>
@@ -89,12 +241,12 @@
                 </ul>
             </div><!--/.navbar-collapse -->
         </div><!--/.navbar-fixed-top -->
-
+        
         <div class="container">
             <div class="row">
                 <div class="">
                     <div class="sidebar-nav">
-
+                        
                         <ul class="nav nav-list accordion-group">
                             <li class="nav-header">
                                 Maquetación
@@ -121,9 +273,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
+                                
+                                
+                                
                                 <div class="lyrow">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -135,9 +287,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
+                                
+                                
+                                
                                 <div class="lyrow">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -150,9 +302,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
+                                
+                                
+                                
                                 <div class="lyrow">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -165,17 +317,41 @@
                                         </div>
                                     </div>
                                 </div>
-
-
+                                
+                                
                             </li>
                         </ul>
-
-
+                        
+                        
                         <ul class="nav nav-list accordion-group">
                             <li class="nav-header">
                                 Estáticos
                             </li>
                             <li class="boxes" id="elmEstaticos">
+                                <div class="box box-element">
+                                    <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
+                                    <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
+                                    <div class="preview">Separador vertical</div>
+                                    <div class="view editable">
+                                        <br /><br />
+                                    </div>
+                                </div>
+                                <div class="box box-element">
+                                    <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
+                                    <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
+                                    <div class="preview">Separador horizontal</div>
+                                    <div class="view editable">
+                                        <hr />
+                                    </div>
+                                </div>
+                                <div class="box box-element">
+                                    <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
+                                    <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
+                                    <div class="preview">Volver atrás</div>
+                                    <div class="view editable">
+                                        <a href="javascript:history.back(1)">Volver Atrás</a>
+                                    </div>
+                                </div>
                                 <div class="box box-element">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -190,12 +366,13 @@
                                 <div class="box box-element">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
-
+                                    
                                     <div class="preview">Párrafo</div>
                                     <div class="view editable">
                                         <p contenteditable="true">Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu. </small></p>
                                     </div>
                                 </div>
+                                
                                 <div class="box box-element">
                                     <a href="#close" class="remove label label-danger"><img class="dragimga" src="../../public/img/papelera.png" />eliminar</a>
                                     <span class="drag label label-default"><img class="dragimga" src="../../public/img/drag.png" /></span>
@@ -440,7 +617,7 @@
                                                 <li class="" ><a href="#" rel="btn-xs">Mini</a></li>
                                             </ul>
                                         </span>
-
+                                        
                                         <a class="btn btn-xs btn-default" href="#" rel="btn-block">Block</a>
                                         <a class="btn btn-xs btn-default" href="#" rel="active">Active</a>
                                         <a class="btn btn-xs btn-default" href="#" rel="disabled">Disabled</a>
@@ -519,7 +696,7 @@
                                                 <li class="" ><a href="#" rel="panel-danger">Danger</a></li>
                                             </ul>
                                         </span>
-
+                                        
                                     </span>
                                     <div class="preview">Lista</div>
                                     <div class="view editable">
@@ -549,7 +726,7 @@
                                                 <li class="" ><a href="#" rel="alert-danger">Danger</a></li>
                                             </ul>
                                         </span>
-
+                                        
                                     </span>
                                     <div class="preview">Alertas</div>
                                     <div class="view editable">
@@ -567,9 +744,19 @@
                                 Dinámicos
                             </li>
                             <li class="boxes" id="elmDinamicos">
-
+                                
                                 <?php
-                               echo $modulosHTML;
+                                echo $modulosDinamicosHTML;
+                                ?>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-list accordion-group">
+                            <li class="nav-header">
+                                Propios
+                            </li>
+                            <li class="boxes" id="elmDinamicos">
+                                <?php
+                                echo $modulosPropiosHTML;
                                 ?>
                             </li>
                         </ul>
@@ -577,14 +764,14 @@
                 </div>
                 <!--/span-->
                 <div class="demo">
-
+                    
                 </div>
                 <!--/span-->
                 <div id="download-layout"><div class="container"></div></div>
             </div>
             <!--/row-->
         </div><!--/.fluid-container-->
-
+        
         <script type="text/javascript">
             function saveLayout() {
                 //	$.ajax({  
@@ -642,8 +829,8 @@
                     }
                 });
             }
-            
-            
+
+
             j(document).on('hidden.bs.modal', function(e) {
                 j(e.target).removeData('bs.modal');
             });
@@ -666,7 +853,7 @@
 
 
         </script>
-
+        
         <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true"></div>
         <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true"></div>

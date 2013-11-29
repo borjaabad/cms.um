@@ -23,29 +23,30 @@ class seccionModel extends Model{
 			return false;
 		}
 	}
-
-	public function addSeccion($seccion){
-
+	
+        public function getSeccion($id){
+                $id=$this->validaInt($id);
 		try {
 				
-			$secciones = $this->_db->prepare("INSERT INTO secciones VALUES (NULL, ?)") or die(mysql_error().mysql_errno());
-			$res = $secciones->execute(array($seccion));
-			return $res;
+			$secciones = $this->_db->query("SELECT seccion FROM secciones WHERE id=$id LIMIT 1") or die(mysql_error().mysql_errno());
+                        $secciones = $secciones->fetch();
+
+                        return $secciones["seccion"];
 		}
 		catch (PDOException $e) {
 			echo $e->getMessage();
-			//return false;
+			return false;
 		}
 	}
-	public function eliminar($secciones){
-	
+       public function getSeccionNoticia($id){
+                $id=$this->validaInt($id);
+                
+
 		try {
-			$conn = $this->_db->prepare("DELETE FROM secciones WHERE id = ?");
-			foreach ($secciones as $id){
-				if($conn->execute(array($id)))
-					Alertify::add('Eliminada sección '.$id,'log');
-			}
-			return true;
+			$secciones = $this->_db->query("SELECT seccion FROM secciones,noticias WHERE id_seccion=secciones.id and noticias.id =$id LIMIT 1") or die(mysql_error().mysql_errno());
+                        $secciones = $secciones->fetch();
+
+                        return $secciones["seccion"];
 		}
 		catch (PDOException $e) {
 			echo $e->getMessage();

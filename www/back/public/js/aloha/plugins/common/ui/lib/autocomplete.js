@@ -10,7 +10,7 @@ define([
 	Context,
 	Component
 ) {
-	
+	'use strict';
 
 	/**
 	 * Generates the HTML for an item

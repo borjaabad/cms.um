@@ -31,7 +31,7 @@
 define(
 [ 'aloha', 'aloha/jquery' ],
 function ( Aloha, jQuery ) {
-	
+	'use strict';
 
 	/**
 	 * Internal data as array with following format:

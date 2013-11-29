@@ -6,7 +6,7 @@
         <!-- Page title -->
         <h3>
             <a id="show-menu" href="#" class="btn btn-primary"><i class="icon-reorder"></i></a>
-            <span id="nuevaNoticia"><?php echo $this->_noticia['titulo']; ?></span>
+            <span id="nuevaNoticia"><?php echo $this->_modulo['nombre']; ?></span>
         </h3>
         <!-- Profile dropdown -->
         <span class="user-profile">
@@ -27,122 +27,35 @@
                 <div class="module">
                     <div class="module-header"><h4></h4></div>
                     <div class="module-content">
-                        <?php if($this->_noticia['id']==0)//nueva noticia
-                                echo '<form method="post" action="'.BASE_URL.'noticias/agregar" class="form-horizontal" >';
-                              else
-                                echo '<form method="post" action="'.BASE_URL.'noticias/guardar" class="form-horizontal" >';
-                           ?>
-                            <input type="hidden" name="idNoticia" value="<?php echo $this->_noticia['id']; ?>">
+                       <?php echo '<form method="post" action="'.BASE_URL_COM.'modulos/guardar" class="form-horizontal" >'; ?>
                             <div class="form-group">
-                                <div class="col-lg-12" >
-                                    <div class="form-group">
-                                        <div class="col-lg-3">
-                                            <?php 
-                                                $this->_posiciones = array(
-                                                    'Principal portada' => '1',
-                                                    'Común portada' => '2',
-                                                    'Tercera portada' => '3',
-                                                    'Otras portada' => '4',
-                                                    'No mostrar en portada' => '0'
-                                                );
-                                                Form::setSelect($this->_posiciones,'pos_portada','pos_portada','Posición portada',$this->_noticia['pos_portada'],'form-control');
-                                            ?>
-                                         
-                                        </div>
-                                        <div class="col-lg-3">
-                                             <?php 
-                                                $this->_posiciones = array(
-                                                    'Principal sección' => '1',
-                                                    'Común sección' => '2',
-                                                    'Tercera sección' => '3',
-                                                    'Otras sección' => '4',
-                                                    'No mostrar en sección' => '0'
-                                                );
-                                                        Form::setSelect($this->_posiciones,'pos_seccion','pos_seccion','Posición sección',$this->_noticia['pos_seccion'],'form-control');
-                                              ?>
-                                        </div>
-                                        <div class="col-lg-3">
-                                                <?php 
-                                                        Form::select($this->_firmantes,'id','nombre','firmante','Firmante',$this->_noticia['id_firmante'],'form-control');
-                                                ?>
-                                        </div>
-                                        <div class="col-lg-3">
-                                                <?php 
-                                                        Form::select($this->_secciones,'id','seccion','seccion','Sección',$this->_noticia['id_seccion'],'form-control');
-                                                ?>
-                                        </div>	
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-4">
-                                            <label for="select1" class="col-lg-4 control-label">Desde: </label>
-                                            <div class="col-lg-8">
-                                                <input type="date" name="desde" class="date form-group" value="<?php echo $this->_noticia['desde'] ;?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label for="select1" class="col-lg-4 control-label">Hasta: </label>
-                                            <div class="col-lg-8">
-                                                <input type="date" name="hasta" class="date form-group" value="<?php echo $this->_noticia['hasta'];?>" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label for="select1" class="col-lg-5 control-label">Orden</label>
-                                            <div class="col-lg-7">
-                                                <input type="number" class="form-control" value="<?php echo $this->_noticia['orden']; ?>" name="orden"/>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="input1" class="col-lg-2 control-label">Título</label>
-                                <div class="col-lg-10">
-                                    <input type="text" name="titulo"  class="form-control" id="tituloH" value="<?php echo $this->_noticia['titulo']; ?>">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="input2" class="col-lg-2 control-label">Subtítulo</label>
-                                <div class="col-lg-10">
-                                    <input type="text" name="subtitulo"  class="form-control" id="tituloH" value="<?php echo $this->_noticia['subtitulo']; ?>">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="input3" class="col-lg-2 control-label">Entradilla</label>
-                                <div class="col-lg-10">
-                                    
-                                    <textarea class="form-control ckeditor" rows="3" id="entradilla" name="entradilla"><?php echo  $this->_noticia['entradilla']; ?></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="input3" class="col-lg-2 control-label">Texto</label>
-                                <div class="col-lg-10">
-                                    <textarea class="form-control ckeditor" id="texto"  rows="10" name="texto"><?php echo $this->_noticia['texto']; ?></textarea>
+                                <div class="col-lg-12">
+                                    <input type="hidden" name="idModulo" value="<?php echo $this->_modulo['id']; ?>">
+                                    <textarea class="form-control ckeditor" id="texto"  rows="10" name="content"><?php echo $this->_modulo['content']; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <button class="btn btn-primary" name="guardar">Guardar noticia</button>
-                                    <button class="btn btn-success" name="publicarahora">Guardar noticia y publicar ahora</button>
+                                    <button class="btn btn-primary" name="guardar">Guardar módulo</button>
                                 </div>
                             </div>
-                        </form>
-                        
-                       
+                        </form>                       
                     </div>
                 </div>
                 <!-- /Basic forms -->
             </div>
-             <div class="col-lg-12">
-                            <div class="module">
-                                <div class="module-content clearfix">
-                                    <ul>
-                                        <li>Si va a guardar noticia y publicar ahora no es necesario setear el valor desde</li>
-                                        <li>La noticia permanecerá publicada hasta las 00:00 del día seleccionado</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-lg-12">
+                <div class="module">
+                    <div class="module-content clearfix">
+                        <h4>Para la creación de módulos puede usar cualquier recurso web HTML/CSS/Javasript, algunas páginas interesantes donde obtener una base a modelar son:</h4>
+                        <ul>
+                            <li>Generación de elementos diversos:<a href="http://bootsnipp.com/">http://bootsnipp.com/</a></li>
+                            <li>Generación de formularios:<a href="http://bootsnipp.com/">http://bootsnipp.com/</a></li>
+                            <li>Generación de elementos básicos:<a href="http://getbootstrap.com/components/">http://getbootstrap.com/components/</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
     </section>
     <!-- /Main Content -->
     
@@ -151,22 +64,9 @@
 
 <script>
 
-
-CKEDITOR.replace( 'entradilla', {
-    toolbar: [
-		{ name: 'document', items: [ 'Source' ] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
-		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
-		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
-                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-                { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-                { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-                { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-	]
-});
-CKEDITOR.replace( 'texto', {
+CKEDITOR.replace( 'texto',  {
     uiColor: '#9AB8F3',
+    height: '500px',
     toolbar: [
 		{ name: 'document', items: [ 'Source' ] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
 		[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.

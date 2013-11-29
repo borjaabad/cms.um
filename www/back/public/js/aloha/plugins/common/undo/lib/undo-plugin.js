@@ -27,7 +27,7 @@
 define(
 ['aloha', 'jquery', 'aloha/plugin', 'undo/vendor/undo', 'undo/vendor/diff_match_patch_uncompressed'],
 function( Aloha, jQuery, Plugin) {
-	
+	"use strict";
 	var
 		dmp = new diff_match_patch,
 		resetFlag = false;

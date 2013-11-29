@@ -67,16 +67,16 @@
         <module>
             <parent>secciones</parent>
             <enabled>true</enabled>
-            <controller>index</controller>
+            <controller>html</controller>
             <method>menu</method>
             <displayname>MenuSecciones</displayname>            
         </module>
-        <module>
-            <parent>noticias</parent>
+         <module>
+            <parent>secciones</parent>
             <enabled>true</enabled>
-            <controller>index</controller>
-            <method>getnoticias</method>
-            <displayname>Noticias seccion</displayname>            
+            <controller>html</controller>
+            <method>gettitularseccion</method>
+            <displayname>Titular sección</displayname>            
         </module>
     </modules>
 </xml>

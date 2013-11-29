@@ -5543,10 +5543,10 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
-  padding: 30px;
-  margin-bottom: 30px;
+  padding: 5px;
+  margin-bottom: 5px;
   font-size: 23px;
-  font-weight: 200;
+  font-weight: 150;
   line-height: 2.1428571435;
   color: inherit;
   background-color: #eeeeee;
@@ -5567,15 +5567,16 @@ a.list-group-item.active > .badge,
 
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 18px;
+    padding-bottom: 18px;
   }
   .container .jumbotron {
-    padding-right: 60px;
-    padding-left: 60px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
   }
   .jumbotron h1 {
-    font-size: 67.5px;
+    font-size: 1.8em;
   }
 }
 
