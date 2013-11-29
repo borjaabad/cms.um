@@ -1,0 +1,23 @@
+    <div class="row">
+            <!-- Full width table -->
+            <div class="col-lg-12">
+                            <div class="module no-padding">
+                                    <div class="module-content table-responsive">
+                                        <tbody>
+                                                <?php if($this->_noticias){
+                                                        foreach ($this->_noticias as $noticia){
+                                                                  if(isset($noticia['titulo'])) 
+                                                                      echo '<a href="'.BASE_URL.'noticia/'.$noticia['id'].'/'.$this->getUrlFriendlyString($noticia['titulo']).'">'
+                                                                      . '<div class="noticia titulo">'.$noticia['titulo'].'</div>'
+                                                                          . '</a>';
+                                                                  if(isset($noticia['subtitulo'])) echo '<div class="noticia subtitulo">'.$noticia['subtitulo'].'</div>';
+                                                                  if(isset($noticia['entradilla'])) echo '<div class="noticia entradilla">'.$noticia['entradilla'].'</div>';
+                                                        }
+                                                }?>
+
+                                        </tbody>
+                                    </div>
+                            </div>
+            </div>
+            <!-- /Full width table -->
+    </div>
